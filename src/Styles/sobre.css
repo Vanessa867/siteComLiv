@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    height: 100vh; 
+}
+body{
+    background-color: #FFF3FF;
+    color: #350052;
+}
+.sobre-nos-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 20px;
+    
+  }
+  
+  .titulo-sobre-nos {
+    width: 40%; 
+    text-align: left; 
+    font-size: 2rem; 
+    color: #350052; 
+  }
+  
+  .paragrafo-sobre-nos {
+    width: 50%; 
+    text-align: right; 
+    font-size: 1.2rem; 
+    line-height: 1.5; 
+    color: #350052; 
+  }
+  
