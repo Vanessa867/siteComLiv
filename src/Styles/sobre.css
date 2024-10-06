@@ -5,6 +5,7 @@
     justify-content: center; 
     text-align: center; 
     height: 100vh; 
+    
 }
 body{
     background-color: #FFF3FF;
@@ -32,4 +33,54 @@ body{
     line-height: 1.5; 
     color: #350052; 
   }
+  .equipe-container {
+    margin-top: 50px;
+    text-align: center;
+  }
   
+  .equipe-container h2 {
+    margin-bottom: 20px; 
+  }
+  
+  .equipe {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .membro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    padding: 20px; 
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 2px solid #ddd; 
+    border-radius: 10px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  }
+  
+  .membro:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .nome {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .descricao {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 5px;
+  }
