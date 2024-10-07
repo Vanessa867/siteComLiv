@@ -1,0 +1,94 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden; 
+}
+
+footer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 10px;
+    background-color: white;
+    color: #C239FF;
+    text-align: center; 
+    width: 100%; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    position: fixed; 
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+header h1 {
+    color: #C239FF;
+    font-size: 30px;
+    margin-left: 5px;
+    margin-right: 60px;
+}
+
+nav {
+    margin-right: auto;
+}
+
+nav a {
+    margin: 0 10px;
+    color: #8F07CC;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #350052;
+    border: none;
+    padding: 10px 20px;
+    color: rgb(248, 245, 245);
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 47px;
+}
+
+button:hover {
+    background-color: #21a1f1;
+}
+
+.registro-link {
+    margin-right: 10px; 
+    color: #C239FF;
+    text-decoration: none;
+}
+
+.registro-link:hover {
+    text-decoration: underline;
+}
+
+.clubinar {
+    text-align: center;
+    font-size: 50px;
+    color:#8F07CC;
+}
+
+.botão-club {
+    background-color: #150124;
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+body {
+    padding-top: 70px; 
+}

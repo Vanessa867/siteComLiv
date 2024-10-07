@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Planos = () => {
+const Cadastrar = () => {
     return (
       <div>
-        <h1>Planos</h1>
+        <h1>Cadastro</h1>
       </div>
     );
   };
   
-  export default Planos;
+  export default Cadastrar;
