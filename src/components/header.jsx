@@ -1,24 +1,25 @@
 import React from 'react';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import '../Styles/Home.css';
 
 const Header = () => {
-    return (
-        <header>
-            <h1>ComLiv</h1>
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/Sobre">Sobre</Link>
-                <Link to="/Planos">Planos</Link>
-                <Link to="/Comofunciona">Como Funciona</Link>
-            </nav>
-            <div>
-                <Link to="/Cadastrar" className="registro-link">Cadastrar</Link>
-                <button>Entrar</button>
-            </div>
-        </header>
-    );
+  return (
+    <AppBar position="fixed" color="default" elevation={2}>
+      <Toolbar>
+        <Typography variant="h6" color="secondary" component="div" sx={{ flexGrow: 1 }}>
+          ComLiv
+        </Typography>
+        <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+          <Button component={Link} to="/" color="inherit">Home</Button>
+          <Button component={Link} to="/sobre" color="inherit">Sobre</Button>
+          <Button component={Link} to="/planos" color="inherit">Planos</Button>
+          <Button component={Link} to="/comofunciona" color="inherit">Como Funciona</Button>
+        </Box>
+        <Button component={Link} to="/cadastrar" color="secondary">Cadastrar</Button>
+        <Button component={Link} to="/entrar" variant="contained" color="primary">Entrar</Button>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default Header;
-

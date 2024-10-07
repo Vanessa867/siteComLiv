@@ -37,7 +37,7 @@ Essa é a essência do nosso clube: simplicidade e acessibilidade. Garantimos qu
           </div>
           <div className='membro'>
             <div className='circle' style={{ backgroundColor: '#FF4500' }}></div>
-            <p className='nome'>Panmella Karen</p>
+            <p className='nome'>Panmela Karen</p>
             <p className='descricao'>Estudande de sistemas para internet - UNICAP</p>
           </div>
         </div>
