@@ -14,7 +14,6 @@ const Home = () => {
         </div>
 
       </main>
-      
       <footer>
         <p>© 2024 COMLIV. Todos os direitos reservados.</p>
       </footer>
