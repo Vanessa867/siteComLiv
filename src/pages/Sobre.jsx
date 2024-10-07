@@ -1,3 +1,10 @@
+import 'uikit/dist/css/uikit.min.css';
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+import '../Styles/sobre.css';
+
+UIkit.use(Icons);
+
 import '../Styles/sobre.css';
 import React from 'react'
 
@@ -12,9 +19,9 @@ Nossa missão é tornar a leitura mais acessível, proporcionando espaços onde 
 
 Essa é a essência do nosso clube: simplicidade e acessibilidade. Garantimos que nossos conteúdos e plataformas sejam fáceis de entender, acolhendo leitores de diferentes gerações, para que todos possam se sentir à vontade em cada página virada.</p>
       </div>
-      <div className='equipe-container'>
+      <div className='equipe-container uk-container'>
         <h2>Equipe</h2>
-        <div className='equipe'>
+        <div className='uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m uk-flex-center' uk-grid='true'>
           <div className='membro'>
             <div className='circle' style={{ backgroundColor: '#FFD700' }}></div>
             <p className='nome'>Vanessa Lins</p>
