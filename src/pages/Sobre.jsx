@@ -4,18 +4,6 @@ import React from 'react'
 const Sobre = () => {
     return (
       <div>
-        <header>
-          <h1>COMLIV</h1>
-        <nav>
-          <a href="/Sobre">Sobre</a>
-          <a href="/Planos">Planos</a>
-          <a href="/ComoFunciona">ComoFunciona</a>
-        </nav>
-        <div>
-          <a href="/cadastrar" className="registro-link">Cadastrar</a>
-          <button>Entrar</button>
-        </div>
-      </header>
       <div className='sobre-nos-container'>
         <h1>Sobre nós</h1>
         <p className='paragrafo-sobre-nos'>Somos uma equipe apaixonada por leitura, comprometida em facilitar o acesso a clubes de leitura e promover o incentivo à leitura em todo o Brasil.
