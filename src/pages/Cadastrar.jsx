@@ -22,7 +22,7 @@ const Cadastrar = () => {
         headers: {
           'X-Parse-Application-Id': '17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM',
           'X-Parse-REST-API-Key': '2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ',
-          'X-Parse-Revocable-Session': 1,
+          'X-Parse-Revocable-Session': '1',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userData),
