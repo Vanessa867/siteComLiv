@@ -17,7 +17,7 @@ const Cadastrar = () => {
     const userData = { nome, email, senha };
 
     try {
-      const response = await fetch('https://parseapi.back4app.com/users', {
+      const response = await fetch('https://parseapi.back4app.com/classes/User', {
         method: 'POST',
         headers: {
           'X-Parse-Application-Id': '17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM',
