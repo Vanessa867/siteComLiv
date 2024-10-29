@@ -1,20 +1,28 @@
+/* Estilo geral para centralizar o formulário */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 form {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 100%;
     max-width: 400px;
-    margin: auto;
-    padding: 40px; 
-    background-color: white; 
-    border: 1px solid #ccc; 
-    border-radius: 10px; 
+    padding: 40px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px; 
 }
 
 h2 {
-    margin-bottom: 40px; 
-    text-align: left; 
+    margin-bottom: 40px;
+    text-align: left;
     color: #9a358a;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -32,21 +40,41 @@ label {
 input {
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: #ccc !important;
+    color: #9A358A !important;
     border-radius: 4px;
     width: 100%;
 }
 
 button {
     padding: 10px;
-    background-color: #9A358A;
+    background-color: #9A358A !important;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     align-self: center;
-    width: 300px
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #7b2a6c; 
 }
 
-button:disabled {
-    background-color: #ccc;
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+
+    button {
+        width: 100%; 
+
+    }
+   
 }
