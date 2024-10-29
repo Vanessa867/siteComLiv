@@ -14,10 +14,11 @@ const Cadastrar = () => {
     setLoading(true);
     setMensagem('');
 
-    const userData = { nome, email, senha };
+    const userData = { username: nome, email: email, password: senha };
+
 
     try {
-      const response = await fetch('https://parseapi.back4app.com/classes/User', {
+      const response = await fetch('https://parseapi.back4app.com/users', {
         method: 'POST',
         headers: {
           'X-Parse-Application-Id': '17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM',
