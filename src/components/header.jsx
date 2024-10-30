@@ -16,7 +16,7 @@ const Header = () => {
           <Button component={Link} to="/comofunciona" color="inherit">Como Funciona</Button>
         </Box>
         <Button component={Link} to="/cadastrar" color="secondary">Cadastrar</Button>
-        <Button component={Link} to="/entrar" variant="contained" color="primary">Entrar</Button>
+        <Button component={Link} to="/Login" variant="contained" color="primary">Entrar</Button>
       </Toolbar>
     </AppBar>
   );
