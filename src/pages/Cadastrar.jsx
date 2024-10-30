@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import '../Styles/Cadastrar.css';
+import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
+
 
 const Cadastrar = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [Repetirsenha, setRepetirsenha] = useState('');
+  const [repetirSenha, setRepetirSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +16,6 @@ const Cadastrar = () => {
     setMensagem('');
 
     const userData = { username: nome, email: email, password: senha };
-
 
     try {
       const response = await fetch('https://parseapi.back4app.com/users', {
@@ -34,7 +34,7 @@ const Cadastrar = () => {
         setNome('');
         setEmail('');
         setSenha('');
-        setRepetirsenha('');
+        setRepetirSenha('');
       } else {
         setMensagem('Erro no cadastro. Tente novamente.');
       }
@@ -47,50 +47,86 @@ const Cadastrar = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-      <h2>Cadastrar</h2>
-        <div>
-          <label>Nome:</label>
-          <input 
-            type="text" 
-            value={nome} 
-            onChange={(e) => setNome(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input 
-            type="password" 
-            value={senha} 
-            onChange={(e) => setSenha(e.target.value)} 
-            required 
-          />
-        </div>
-        <div>
-          <label>Repetir senha:</label>
-          <input 
-            type="password" 
-            value={Repetirsenha} 
-            onChange={(e) => setRepetirsenha(e.target.value)} 
-            required 
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Cadastrando...' : 'Cadastrar'}
-        </button>
-      </form>
-      {mensagem && <p>{mensagem}</p>}
+    <div className='container'>
+      <Grid container style={{ height: '100vh' }}>
+        {/* Texto à esquerda */}
+        <Grid item xs={2} sm={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#9A358A', height: '80%' }}>
+            <Typography variant="h4" style={{ color: '#ffffff' }} gutterBottom>
+              Bem-vindo ao ComLiv, crie sua conta!
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Formulário à direita */}
+        <Grid item xs={12} sm={8} style={{ display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
+          <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#ffffff', height: '80%' }}>
+            <Typography variant="h5" style={{ color: '#9A358A' }} gutterBottom>
+              Cadastre-se!
+            </Typography>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                label="Nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  sx: { height: '60px', fontSize: '1rem'} // Tamanho do input
+                }}
+              />
+              <TextField
+                label="Email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  sx: { height: '60px', fontSize: '1rem'} // Tamanho do input
+                }}
+              />
+              <TextField
+                label="Senha"
+                type="password"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  sx: { height: '60px', fontSize: '1rem'} // Tamanho do input
+                }}
+              />
+              <TextField
+                label="Repetir senha"
+                type="password"
+                value={repetirSenha}
+                onChange={(e) => setRepetirSenha(e.target.value)}
+                required
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  sx: { height: '60px',  fontSize: '1rem'} // Tamanho do input
+                }}
+              />
+                <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              style={{ height: '60px', width: '600px',fontSize: '1rem' }} // Tamanho do botão
+              disabled={loading}
+            >
+              {loading ? 'Cadastrando...' : 'Cadastrar'}
+            </Button>
+            </form>
+            {mensagem && <Typography color="error">{mensagem}</Typography>}
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };
