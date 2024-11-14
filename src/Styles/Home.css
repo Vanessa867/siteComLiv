@@ -32,6 +32,7 @@ html, body {
     background-color: #350052;
     color: #ffffff;
     text-transform: none;
+    border: none;
 }
 
 .botão-club:hover {

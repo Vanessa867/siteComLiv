@@ -1,13 +1,14 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
+import logo from '../images/logo.png';
 
 const Header = () => {
   return (
     <AppBar position="fixed" color="default" elevation={2}>
       <Toolbar>
         <Typography variant="h6" color="secondary" component="div" sx={{ flexGrow: 1 }}>
-          ComLiv
+        <img src= {logo} alt="logotipo do site" />
         </Typography>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
           <Button component={Link} to="/" color="inherit">Home</Button>
