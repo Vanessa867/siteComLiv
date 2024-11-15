@@ -1,22 +1,35 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import logo from '../images/logo.png';
+import logo from '../images/comliv.png';
+import '@fontsource/nunito';
+import '@fontsource/nunito/400.css';
+import '@fontsource/nunito/600.css';
+import '@fontsource/nunito/700.css';
 
 const Header = () => {
   return (
-    <AppBar position="fixed" color="default" elevation={2}>
+    <AppBar 
+    position="fixed" 
+    color="default" 
+    elevation={0}
+    sx={{ backgroundColor: 'white' }}
+    >
       <Toolbar>
         <Typography variant="h6" color="secondary" component="div" sx={{ flexGrow: 1 }}>
-        <img src= {logo} alt="logotipo do site" />
+        <img 
+        src= {logo} 
+        alt="logotipo do site"
+        style={{ height: '85px', maxWidth: '100px', objectFit: 'contain' }} 
+        />
         </Typography>
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-          <Button component={Link} to="/" color="inherit">Home</Button>
-          <Button component={Link} to="/sobre" color="inherit">Sobre</Button>
-          <Button component={Link} to="/planos" color="inherit">Planos</Button>
-          <Button component={Link} to="/comofunciona" color="inherit">Como Funciona</Button>
+          <Button component={Link} to="/" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Home</Button>
+          <Button component={Link} to="/sobre" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Sobre</Button>
+          <Button component={Link} to="/planos" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Planos</Button>
+          <Button component={Link} to="/comofunciona" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Como Funciona</Button>
         </Box>
-        <Button component={Link} to="/cadastrar" color="secondary">Cadastrar</Button>
+        <Button component={Link} to="/cadastrar" sx={{ color: '#350052', fontFamily: 'Nunito, Arial, sans-serif', fontWeight: 700 }}>Cadastrar</Button>
         <Button component={Link} to="/Login" variant="contained" color="primary">Entrar</Button>
       </Toolbar>
     </AppBar>

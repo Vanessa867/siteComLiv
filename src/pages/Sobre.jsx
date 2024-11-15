@@ -11,6 +11,9 @@ import React from 'react'
 const Sobre = () => {
     return (
       <div>
+        <br></br>
+        <br></br>
+        <br></br>
       <div className='sobre-nos-container'>
         <h1>Sobre nós</h1>
         <p className='paragrafo-sobre-nos'>Somos uma equipe apaixonada por leitura, comprometida em facilitar o acesso a clubes de leitura e promover o incentivo à leitura em todo o Brasil.
