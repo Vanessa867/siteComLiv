@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 
 
 const Cadastrar = () => {
@@ -52,6 +54,17 @@ const Cadastrar = () => {
         {/* Texto à esquerda */}
         <Grid item xs={2} sm={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#9A358A', height: '80%' }}>
+            {/* Link para voltar à página principal */}
+            <Link to="/" 
+            style={{ 
+              position: 'absolute', 
+              top: '20px', 
+              left: '20px', 
+              textDecoration: 'none', 
+              color: 'white', 
+              fontWeight: 'bold' }}>
+              ← Voltar
+            </Link>
             <Typography variant="h4" style={{ color: '#ffffff' }} gutterBottom>
               Bem-vindo ao ComLiv, crie sua conta!
             </Typography>

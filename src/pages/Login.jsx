@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -45,6 +46,21 @@ const Login = () => {
       <Grid container style={{ height: '100vh' }}>
         {/* Texto à esquerda */}
         <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          {/* Link de retorno */}
+        <Link 
+          to="/" 
+          style={{ 
+            position: 'absolute', 
+            top: '20px', 
+            left: '30px', 
+            textDecoration: 'none', 
+            color: 'white', 
+            fontWeight: 'bold', 
+            fontSize: '1rem' 
+          }}
+        >
+          ← Voltar
+        </Link>
           <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#9A358A', height: '80%' }}>
             <Typography variant="h4" style={{ color: '#ffffff' }} gutterBottom>
               Bem-vindo ao ComLiv, faça seu login!
