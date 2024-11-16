@@ -67,6 +67,7 @@ const Cadastrar = () => {
             </Link>
             <Typography variant="h4" style={{ color: '#ffffff' }} gutterBottom>
               Bem-vindo ao ComLiv, crie sua conta!
+              
             </Typography>
           </Paper>
         </Grid>
