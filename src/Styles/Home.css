@@ -48,8 +48,8 @@ footer {
 
 .content-container {
     display: flex;
-    align-items: flex-start; 
-    justify-content: flex-start; 
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
     gap: 2rem; 
     margin-bottom: 2rem; 
 }
@@ -66,7 +66,7 @@ footer {
 
 .new-section {
     margin-top: 1rem;
-    text-align: center;
+    text-align: center;  /* Centraliza o texto */
     padding: 2rem;
 }
 
@@ -82,7 +82,7 @@ footer {
 
 .image-grid {
     display: flex;
-    justify-content: center; 
+    justify-content: center;  /* Centraliza as imagens */
     gap: 2rem; 
     flex-wrap: wrap; 
 }
@@ -90,7 +90,7 @@ footer {
 .image-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centraliza as imagens e textos dentro da card */
     max-width: 300px; 
     text-align: center;
 }
@@ -112,4 +112,3 @@ footer {
     color: #5e3c89;
     margin-top: 0.5rem;
 }
-

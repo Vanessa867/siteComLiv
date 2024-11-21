@@ -26,7 +26,6 @@ const Header = () => {
         <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
           <Button component={Link} to="/" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Home</Button>
           <Button component={Link} to="/sobre" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Sobre</Button>
-          <Button component={Link} to="/planos" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Planos</Button>
           <Button component={Link} to="/comofunciona" sx={{ color: '#350052', fontWeight: '700', fontFamily: 'Nunito' }}>Como Funciona</Button>
         </Box>
         <Button component={Link} to="/cadastrar" sx={{ color: '#350052', fontFamily: 'Nunito, Arial, sans-serif', fontWeight: 700 }}>Cadastrar</Button>
