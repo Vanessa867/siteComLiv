@@ -48,8 +48,8 @@ footer {
 
 .content-container {
     display: flex;
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; 
+    justify-content: center; 
     gap: 2rem; 
     margin-bottom: 2rem; 
 }
@@ -66,7 +66,7 @@ footer {
 
 .new-section {
     margin-top: 1rem;
-    text-align: center;  /* Centraliza o texto */
+    text-align: center;  
     padding: 2rem;
 }
 
@@ -82,7 +82,7 @@ footer {
 
 .image-grid {
     display: flex;
-    justify-content: center;  /* Centraliza as imagens */
+    justify-content: center;  
     gap: 2rem; 
     flex-wrap: wrap; 
 }
@@ -90,7 +90,7 @@ footer {
 .image-card {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza as imagens e textos dentro da card */
+    align-items: center; 
     max-width: 300px; 
     text-align: center;
 }
@@ -112,3 +112,130 @@ footer {
     color: #5e3c89;
     margin-top: 0.5rem;
 }
+
+.benefits-section {
+    text-align: center;
+    margin-top: 50px;
+    padding: 2rem;
+  }
+  
+  .section-title {
+    color: #5e3c89;
+    font-weight: bold;
+  }
+  
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  
+  .benefit-item:nth-child(1) {
+    background-color: #f6e6ff; 
+  }
+  
+  .benefit-item:nth-child(2) {
+    background-color: #fff4d5; 
+  }
+  
+  .benefit-item:nth-child(3) {
+    background-color: #ffe4ed; 
+  }
+  
+  .benefit-number {
+    font-size: 3rem;
+    color: #5e3c89;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  
+  .benefit-content {
+    text-align: left;
+  }
+  
+  .benefit-title {
+    font-weight: bold;
+    color: #350052;
+  }
+  
+  .benefit-description {
+    color: #5e3c89;
+  }
+
+  .community-section {
+  margin-top: 50px;
+  padding: 2rem 0;
+}
+
+.community-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.community-image .image {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #5e3c89; 
+  border-radius: 8px;
+}
+
+.community-text {
+  flex: 1;
+}
+
+.community-title {
+  color: #5e3c89;
+  font-weight: bold;
+}
+
+.community-description {
+  color: #333;
+  line-height: 1.8;
+}
+
+.community-section {
+    margin-top: 50px;
+    padding: 2rem 0;
+  }
+  
+.community-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+  
+.community-image .image {
+    max-width: 350px;
+    height: auto;
+    border: 2px solid #5e3c89; 
+    border-radius: 8px;
+}
+  
+.community-text {
+    flex: 1;
+
+}
+  
+.community-title {
+    color: #5e3c89;
+    font-weight: bold;
+
+}
+  
+.community-description {
+    color: #333;
+    line-height: 1.8;
+
+}
+  
+  
