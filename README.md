@@ -19,4 +19,4 @@ Este projeto foi construído com as seguintes tecnologias:
 - React - Biblioteca JavaScript para a criação de interfaces de usuário
 - Vite - Ferramenta para construção de aplicações com um ambiente de desenvolvimento otimizado
 - CSS - Para o design e estilo da aplicação
-- GitHub Pages - Hospedagem do site
+- Vercel - Hospedagem do site
