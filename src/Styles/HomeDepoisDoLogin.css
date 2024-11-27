@@ -1,4 +1,4 @@
-/* Estilização geral */
+/* Estilos globais */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -6,32 +6,49 @@ body {
     background-color: #f9f5fc;
   }
   
-  header {
-    background-color: #ffffff;
-    padding: 10px 20px;
+  /* Sidebar */
+  .sidebar {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #e0e0e0;
+    height: 100vh;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #7d29d9;
+    cursor: pointer;
+  }
+  
+  .sidebar li:hover {
+    text-decoration: underline;
+  }
+  
+  /* Header */
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
   }
   
-  header .logo {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    color: #7d29d9;
-  }
-  
-  header .search-bar {
+  .search-bar {
     background-color: #f3eaf7;
     border-radius: 25px;
-    padding: 8px 15px;
-    width: 60%;
+    padding: 5px 15px;
     display: flex;
     align-items: center;
+    width: 60%;
   }
   
-  header .search-bar input {
+  .search-bar input {
     border: none;
     outline: none;
     width: 100%;
@@ -40,52 +57,17 @@ body {
     padding-left: 10px;
   }
   
-  header .search-bar input::placeholder {
+  .search-bar input::placeholder {
     color: #bfa6d9;
   }
   
-  aside {
-    width: 20%;
-    padding: 20px;
-    background-color: #fff;
-    border-right: 1px solid #e0e0e0;
-    height: 100vh;
-  }
-  
-  aside ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  aside li {
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #7d29d9;
-  }
-  
-  main {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  main .welcome-message {
-    font-size: 24px;
-    color: #7d29d9;
-    margin-bottom: 20px;
-  }
-  
-  main .favorites-section {
-    display: flex;
-    gap: 20px;
-  }
-  
+  /* Cards */
   .card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
     padding: 15px;
     text-align: center;
-    flex: 1;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #ffffff;
   }
   
   .card img {
