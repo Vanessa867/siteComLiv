@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importação do React Router
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate(); // Hook para navegação
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,15 +29,22 @@ const Login = () => {
         body: JSON.stringify(userData),
       });
 
+      const data = await response.json(); 
+
       if (response.ok) {
         setMensagem('Login realizado com sucesso!');
-        // Aqui você pode redirecionar o usuário ou fazer outra ação
-      } else {
-        setMensagem('Erro no login. Verifique suas credenciais.');
-      }
-    } catch (error) {
-      console.error('Erro:', error);
-      setMensagem('Erro ao conectar com o servidor.');
+      localStorage.setItem('userSession', JSON.stringify(data));
+      onLogin();
+      navigate('/HomeDepoisDoLogin');
+      
+    } else {
+      const errorData = await response.json();
+      console.error('Erro de login:', errorData);
+      setMensagem('Erro no login. Verifique suas credenciais.');
+    }
+  } catch (error) {
+    console.error('Erro ao conectar com o servidor:', error);
+    setMensagem(`Erro ao conectar com o servidor: ${error.message || 'Desconhecido'}`);
     } finally {
       setLoading(false);
     }

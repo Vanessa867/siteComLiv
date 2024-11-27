@@ -14,6 +14,8 @@ function AppRoutes() {
         <Route path="/planos" element={<Planos />} />
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/cadastrar" element={<Cadastrar />} />
+        <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} />
+
       </Routes>
     </Router>
   );

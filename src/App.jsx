@@ -7,6 +7,7 @@ import Cadastrar from './pages/Cadastrar';
 import Login from './pages/Login';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import card from './components/cardClub';
+import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 
 const theme = createTheme({
   palette: {
@@ -26,6 +27,10 @@ const theme = createTheme({
 const AppContent = () => {
   const location = useLocation(); // Obtém a localização atual
 
+  const handleLogin = () => {
+    console.log('Usuário logado com sucesso!');
+  };
+  
   return (
     <>
        {/* O Header será exibido em todas as rotas, exceto em cadastrar e login */}
@@ -37,8 +42,9 @@ const AppContent = () => {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/comofunciona" element={<ComoFunciona />} />
         <Route path="/cadastrar" element={<Cadastrar />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<Login onLogin={handleLogin} />} />
         <Route path="/card" element={<card />} />
+        <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} /> 
       </Routes>
     </>
   );

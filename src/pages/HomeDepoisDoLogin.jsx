@@ -1,37 +1,38 @@
 import React from "react";
-import "./Sidebar.css";
+import '../Styles/HomeDepoisDoLogin.css';
 
-function Sidebar() {
+const HomeDepoisDoLogin = () => {
+  const userSession = JSON.parse(localStorage.getItem('userSession'));
+const userName = userSession ? userSession.userName : '';
+
   return (
-    <div className="sidebar">
-      {}
-      <div className="logo">
-      <img src="/src/imagens/comliv.png" alt="comliv.png" />
-      </div>
+      <div className="home-container">
+          <header>
+              <h1>Oiiee, {userName}</h1>
+              <p>Bem-vindo ao ComLiv, qual clube de hoje?</p>
+              </header>
+            <div className="favorites-section">
+                <h2>Favoritos dos ComLiveiros</h2>
+                <div className="favorites-list">
+                    <div className="card">
+                        <img src="link-da-imagem-1" alt="Descrição 1" />
+                        <p>Rumo às épocas com jiu-jitsu</p>
+                        <button>Participar</button>
+                    </div>
+                    <div className="card">
+                        <img src="link-da-imagem-2" alt="Descrição 2" />
+                        <p>E assim que acaba, Começando clubes...</p>
+                        <button>Participar</button>
+                    </div>
+                    <div className="card">
+                        <img src="link-da-imagem-3" alt="Descrição 3" />
+                        <p>O poder do hábito com disciplina</p>
+                        <button>Participar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-      {/* Main Buttons */}
-      <button className="sidebar-button">Criar Clube</button>
-      <button className="sidebar-button">Home</button>
-      <button className="sidebar-button">Explorar</button>
-
-      {/* Clubes Section */}
-      <div className="sidebar-section">
-        <h3>Clubes</h3>
-        <button className="sidebar-button">Favoritos</button>
-        <button className="sidebar-button">Participando</button>
-        <button className="sidebar-button">Meus Clubes</button>
-      </div>
-
-      {/* Usuários Section */}
-      <div className="sidebar-section">
-        <h3>Usuários</h3>
-        <button className="sidebar-button">Perfil</button>
-        <button className="sidebar-button">PremiumLiv</button>
-        <button className="sidebar-button">Configurações</button>
-        <button className="sidebar-button">Sair</button>
-      </div>
-    </div>
-  );
-}
-
-export default Sidebar;
+export default HomeDepoisDoLogin;
