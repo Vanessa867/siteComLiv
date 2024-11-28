@@ -1,12 +1,6 @@
 import React from "react";
-import '../Styles/HomeDepoisDoLogin.css';
-import { Box, Grid, Paper, Button, Typography, TextField, Drawer, List, ListItem, ListItemText } from '@mui/material';
-import { Link } from 'react-router-dom';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import DescriptionIcon from '@mui/icons-material/Description';
-import LayersIcon from '@mui/icons-material/Layers';
+import { Box, Grid, Paper, Button, Typography, TextField } from '@mui/material';
+import DashboardLayout from '../components/DashboardLayout';  // Importa o layout do dashboard
 
 const HomeDepoisDoLogin = () => {
   const userSession = JSON.parse(localStorage.getItem('userSession'));
@@ -25,18 +19,6 @@ const HomeDepoisDoLogin = () => {
       "&:hover": {
         backgroundColor: "#6822ba",
       },
-    },
-    drawer: {
-      width: 240,
-      flexShrink: 0,
-      '& .MuiDrawer-paper': {
-        width: 240,
-        boxSizing: 'border-box',
-      },
-    },
-    content: {
-      flexGrow: 1,
-      padding: '20px',
     },
   };
 
@@ -60,35 +42,8 @@ const HomeDepoisDoLogin = () => {
   ];
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      {/* Sidebar */}
-      <Drawer
-        sx={dynamicStyles.drawer}
-        variant="permanent"
-        anchor="left"
-      >
-        <List>
-          <ListItem button component={Link} to="/dashboard">
-            <DashboardIcon />
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem button component={Link} to="/home">
-            <ShoppingCartIcon />
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button component={Link} to="/reports">
-            <BarChartIcon />
-            <ListItemText primary="Reports" />
-          </ListItem>
-          <ListItem button component={Link} to="/Config">
-            <LayersIcon />
-            <ListItemText primary="Configurações" />
-          </ListItem>
-        </List>
-      </Drawer>
-
-      {/* Content Area */}
-      <Box sx={dynamicStyles.content}>
+    <DashboardLayout>
+      <Box sx={{ padding: '20px' }}>
         <Typography sx={dynamicStyles.welcomeMessage}>
           Oiiee, {userName}
         </Typography>
@@ -148,7 +103,7 @@ const HomeDepoisDoLogin = () => {
           </Grid>
         </section>
       </Box>
-    </Box>
+    </DashboardLayout>
   );
 };
 
