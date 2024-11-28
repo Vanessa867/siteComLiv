@@ -49,7 +49,6 @@ const Cadastrar = () => {
   return (
     <div className='container'>
       <Grid container style={{ height: '100vh' }}>
-        {/* Texto à esquerda */}
         <Grid item xs={2} sm={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#9A358A', height: '80%' }}>
             <Typography variant="h4" style={{ color: '#ffffff' }} gutterBottom>
@@ -58,7 +57,6 @@ const Cadastrar = () => {
           </Paper>
         </Grid>
 
-        {/* Formulário à direita */}
         <Grid item xs={12} sm={8} style={{ display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
           <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#ffffff', height: '80%' }}>
             <Typography variant="h5" style={{ color: '#9A358A' }} gutterBottom>
@@ -73,7 +71,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem'} // Tamanho do input
+                  sx: { height: '60px', fontSize: '1rem'} 
                 }}
               />
               <TextField
@@ -85,7 +83,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem'} // Tamanho do input
+                  sx: { height: '60px', fontSize: '1rem'} 
                 }}
               />
               <TextField
@@ -97,7 +95,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem'} // Tamanho do input
+                  sx: { height: '60px', fontSize: '1rem'} 
                 }}
               />
               <TextField
@@ -109,7 +107,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px',  fontSize: '1rem'} // Tamanho do input
+                  sx: { height: '60px',  fontSize: '1rem'} 
                 }}
               />
                 <Button
@@ -117,7 +115,7 @@ const Cadastrar = () => {
               variant="contained"
               color="primary"
               fullWidth
-              style={{ height: '60px', width: '600px',fontSize: '1rem' }} // Tamanho do botão
+              style={{ height: '60px', width: '600px',fontSize: '1rem' }} 
               disabled={loading}
             >
               {loading ? 'Cadastrando...' : 'Cadastrar'}

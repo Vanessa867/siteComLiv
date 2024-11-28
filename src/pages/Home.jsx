@@ -9,6 +9,11 @@ import imagens1 from '../images/imgDois.2container.png';
 import imagens2 from '../images/imgTres.2container.png';
 import imagens3 from '../images/imgUm.2container.png'
 import imagens5 from '../images/imagem5.png'
+import { Link } from '@mui/material';
+import { Facebook, Instagram, Twitter } from '@mui/icons-material';
+import '../Styles/Footer.css'; 
+
+
 
 
 const Home = () => {
@@ -146,10 +151,30 @@ const Home = () => {
   </Box>
 </Container>
 
-      <footer>
-        <Typography variant="body2" align="center" color="textSecondary">
-          © 2024 COMLIV. Todos os direitos reservados.
-        </Typography>
+<footer className="footer">
+        <Box className="footer-container">
+          <Typography variant="body1" className="footer-title">
+            Todo Comliver é ativo nas redes sociais:
+          </Typography>
+          <Box className="footer-icons">
+            <Link href="https://facebook.com" target="_blank" rel="noopener" className="footer-icon">
+              <Facebook />
+            </Link>
+            <Link href="https://instagram.com" target="_blank" rel="noopener" className="footer-icon">
+              <Instagram />
+            </Link>
+            <Link href="https://twitter.com" target="_blank" rel="noopener" className="footer-icon">
+              <Twitter />
+            </Link>
+          </Box>
+          <Typography variant="body2" className="footer-text">
+            © 2024 COMLIV. Todos os direitos reservados.
+          </Typography>
+          <Typography variant="body2" className="footer-links">
+            <Link href="/termos" className="footer-link">Termos de Uso</Link> |{' '}
+            <Link href="/privacidade" className="footer-link">Política de Privacidade</Link>
+          </Typography>
+        </Box>
       </footer>
     </div>
   );
