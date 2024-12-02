@@ -1,4 +1,3 @@
-/* Estilos globais */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -6,7 +5,6 @@ body {
     background-color: #f9f5fc;
   }
   
-  /* Sidebar */
   .sidebar {
     width: 20%;
     background-color: #fff;
@@ -31,7 +29,6 @@ body {
     text-decoration: underline;
   }
   
-  /* Header */
   .header {
     display: flex;
     justify-content: space-between;
@@ -61,7 +58,6 @@ body {
     color: #bfa6d9;
   }
   
-  /* Cards */
   .card {
     padding: 15px;
     text-align: center;

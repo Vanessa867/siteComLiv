@@ -22,7 +22,6 @@ const HomeDepoisDoLogin = () => {
     },
   };
 
-  // Lista de clubes favoritos
   const favoriteClubs = [
     {
       id: 1,
@@ -51,7 +50,6 @@ const HomeDepoisDoLogin = () => {
           Bem-vindo ao ComLiv, qual clube de hoje?
         </Typography>
 
-        {/* Barra de pesquisa */}
         <Box
           sx={{
             display: "flex",
@@ -71,7 +69,6 @@ const HomeDepoisDoLogin = () => {
           />
         </Box>
 
-        {/* Seção de Favoritos */}
         <section className="favorites-section">
           <Typography variant="h6" sx={{ marginBottom: "20px" }}>
             Favoritos dos ComLiveiros
