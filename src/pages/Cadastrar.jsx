@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom'; // Importação do Link e useNavigate
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
-
 
 const Cadastrar = () => {
   const [nome, setNome] = useState('');
@@ -9,6 +9,8 @@ const Cadastrar = () => {
   const [repetirSenha, setRepetirSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate(); // Instância do hook
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +37,9 @@ const Cadastrar = () => {
         setEmail('');
         setSenha('');
         setRepetirSenha('');
+        
+        // Redirecionar para a página Home
+        navigate('/HomeDepoisDoLogin');
       } else {
         setMensagem('Erro no cadastro. Tente novamente.');
       }
@@ -57,7 +62,7 @@ const Cadastrar = () => {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} sm={8} style={{ display: 'flex', alignItems: 'center',justifyContent: 'center'}}>
+        <Grid item xs={12} sm={8} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#ffffff', height: '80%' }}>
             <Typography variant="h5" style={{ color: '#9A358A' }} gutterBottom>
               Cadastre-se!
@@ -71,7 +76,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem'} 
+                  sx: { height: '60px', fontSize: '1rem' },
                 }}
               />
               <TextField
@@ -83,7 +88,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem'} 
+                  sx: { height: '60px', fontSize: '1rem' },
                 }}
               />
               <TextField
@@ -95,7 +100,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem'} 
+                  sx: { height: '60px', fontSize: '1rem' },
                 }}
               />
               <TextField
@@ -107,21 +112,26 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px',  fontSize: '1rem'} 
+                  sx: { height: '60px', fontSize: '1rem' },
                 }}
               />
-                <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              style={{ height: '60px', width: '600px',fontSize: '1rem' }} 
-              disabled={loading}
-            >
-              {loading ? 'Cadastrando...' : 'Cadastrar'}
-            </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                style={{ height: '60px', width: '600px', fontSize: '1rem' }}
+                disabled={loading}
+              >
+                {loading ? 'Cadastrando...' : 'Cadastrar'}
+              </Button>
             </form>
             {mensagem && <Typography color="error">{mensagem}</Typography>}
+            
+            {/* Link para o login */}
+            <Typography variant="body2" style={{ marginTop: '20px' }}>
+              Já tem uma conta? <Link to="/login" style={{ color: '#9A358A', textDecoration: 'none' }}>Faça login!</Link>
+            </Typography>
           </Paper>
         </Grid>
       </Grid>

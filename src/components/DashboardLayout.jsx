@@ -1,18 +1,50 @@
-import React from 'react';
-import { Box, Button, Drawer, List, ListItem, ListItemText, Typography, Divider } from '@mui/material';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  Divider,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../images/comliv.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
-import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const DashboardLayout = ({ children }) => {
+  const [openDialog, setOpenDialog] = useState(false); // Estado para controlar o diálogo
+  const navigate = useNavigate(); // Para redirecionamento
+
+  // Função para abrir o diálogo
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  // Função para fechar o diálogo
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  // Função para confirmar saída
+  const handleConfirmExit = () => {
+    setOpenDialog(false);
+    // Lógica para deslogar, como limpar tokens ou estado
+    navigate('/Home'); // Redireciona para a página inicial
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       {/* Sidebar */}
@@ -23,17 +55,15 @@ const DashboardLayout = ({ children }) => {
           '& .MuiDrawer-paper': {
             width: 240,
             boxSizing: 'border-box',
-            backgroundColor: '#F9F5FF', // Cor de fundo lilás claro
-            color: '#6A1B9A', // Texto lilás escuro
+            backgroundColor: '#F9F5FF',
+            color: '#6A1B9A',
           },
         }}
         variant="permanent"
         anchor="left"
       >
         <Box sx={{ textAlign: 'center', padding: '16px' }}>
-          {/* Logo */}
           <img src={logo} alt="Logo do Site" style={{ maxWidth: '100%', marginBottom: '16px' }} />
-          {/* Botão Criar Clube */}
           <Button
             variant="contained"
             sx={{
@@ -44,12 +74,12 @@ const DashboardLayout = ({ children }) => {
               '&:hover': { backgroundColor: '#5A1280' },
             }}
             fullWidth
+            onClick={() => navigate('/CreateClub')} 
           >
             Criar Clube
           </Button>
         </Box>
         <List>
-          {/* Navegação Principal */}
           <Typography variant="h6" sx={{ padding: '16px', color: '#6A1B9A' }}>
             Navegação
           </Typography>
@@ -64,14 +94,9 @@ const DashboardLayout = ({ children }) => {
 
           <Divider />
 
-          {/* Seção Clubes */}
           <Typography variant="h6" sx={{ padding: '16px', color: '#6A1B9A' }}>
             Clubes
           </Typography>
-          <ListItem button component={Link} to="/favoritos">
-            <StarIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Favoritos" />
-          </ListItem>
           <ListItem button component={Link} to="/participando">
             <GroupIcon sx={{ color: '#6A1B9A' }} />
             <ListItemText primary="Participando" />
@@ -82,7 +107,6 @@ const DashboardLayout = ({ children }) => {
           </ListItem>
         </List>
         <Divider />
-        {/* Seção Usuário */}
         <List>
           <Typography variant="h6" sx={{ padding: '16px', color: '#6A1B9A' }}>
             Usuário
@@ -91,15 +115,11 @@ const DashboardLayout = ({ children }) => {
             <AccountCircleIcon sx={{ color: '#6A1B9A' }} />
             <ListItemText primary="Perfil" />
           </ListItem>
-          <ListItem button component={Link} to="/premium">
-            <CreditCardIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="PremiumLiv" />
-          </ListItem>
-          <ListItem button component={Link} to="/configuracoes">
+          <ListItem button component={Link} to="/config">
             <SettingsIcon sx={{ color: '#6A1B9A' }} />
             <ListItemText primary="Configurações" />
           </ListItem>
-          <ListItem button component={Link} to="/sair">
+          <ListItem button onClick={handleOpenDialog}>
             <ExitToAppIcon sx={{ color: '#6A1B9A' }} />
             <ListItemText primary="Sair" />
           </ListItem>
@@ -110,10 +130,24 @@ const DashboardLayout = ({ children }) => {
       <Box sx={{ flexGrow: 1, padding: '20px', backgroundColor: '#FFFFFF' }}>
         {children}
       </Box>
+
+      {/* Diálogo de Confirmação */}
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Confirmar saída</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Você tem certeza que deseja sair da sua conta?</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleConfirmExit} color="secondary" autoFocus>
+            Sair
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
 
 export default DashboardLayout;
-
-
