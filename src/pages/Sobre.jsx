@@ -8,7 +8,7 @@ import tecnologiaImagem from '../images/pcz.png'; // Imagem de "Como Funciona No
 
 const Sobre = () => {
   return (
-    <Box sx={{ padding: '40px', backgroundColor: '#F9F5FF' }}>
+    <Box sx={{ padding: '40px', backgroundColor: '#FFFFF' }}>
       {/* Seção Sobre Nós */}
       <Grid container spacing={4} alignItems="center">
         <Grid item xs={12} md={6}>
@@ -69,7 +69,7 @@ const Sobre = () => {
           <Typography variant="h4" sx={{ color: '#6A1B9A', marginBottom: '20px', fontWeight: 'bold' }}>
             Como Funciona Nossa Tecnologia
           </Typography>
-            A escolha de nossas tecnologias é feita com base na eficiência, escalabilidade e experiência do usuário. Buscamos sempre adotar ferramentas que atendam aos requisitos do projeto e que nos permitam entregar resultados de alta qualidade de forma rápida e eficiente. Por exemplo, o **React** foi escolhido por sua flexibilidade e capacidade de criar interfaces dinâmicas, enquanto o **Spring Boot** é fundamental para construir um backend robusto e escalável. Além disso, **Vite** e **Vercel** ajudam a otimizar o desenvolvimento e a hospedagem, proporcionando uma experiência de construção e implantação rápida e eficiente.
+            A escolha de nossas tecnologias é feita com base na eficiência, escalabilidade e experiência do usuário. Buscamos sempre adotar ferramentas que atendam aos requisitos do projeto e que nos permitam entregar resultados de alta qualidade de forma rápida e eficiente. 
           </Typography>
         </Grid>
 
@@ -97,9 +97,9 @@ const Sobre = () => {
           { name: 'CSS', description: 'Usado para o design e estilo da aplicação, proporcionando uma interface limpa e intuitiva.' },
           { name: 'Vercel', description: 'Plataforma de hospedagem do site, garantindo desempenho e escalabilidade.' },
           { name: 'Spring Boot', description: 'Framework Java para construção de aplicações backend robustas e escaláveis.' },
-          { name: 'Java', description: 'Linguagem de programação amplamente utilizada para o desenvolvimento de aplicações robustas, escaláveis e seguras, com forte presença no backend.' }
+          { name: 'Java', description: 'Linguagem de programação amplamente utilizada para o desenvolvimento de aplicações.' }
         ].map((tech, index) => (
-          <Grid item xs={12} md={4} key={index}>
+          <Grid item xs={8} md={4} key={index}>
             <Paper 
               sx={{ 
                 padding: '20px', 
