@@ -9,6 +9,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import card from './components/cardClub';
 import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 import Config from './pages/Config';
+import createclub from './components/CreateClub';
+import CreateClub from './components/CreateClub';
 
 
 
@@ -48,6 +50,7 @@ const AppContent = () => {
         <Route path="/Login" element={<Login onLogin={handleLogin} />} />
         <Route path="/card" element={<card />} />
         <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} /> 
+        <Route path="/CreateClub" element={<CreateClub />}/>
         <Route path="/Config" element={<Config />} />
       </Routes>
     </>
