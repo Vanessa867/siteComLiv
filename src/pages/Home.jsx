@@ -10,6 +10,8 @@ import imagens2 from '../images/imgTres.2container.png';
 import imagens3 from '../images/imgUm.2container.png';
 import imagens5 from '../images/imagem5.png';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+
 
 const Home = () => {
   return (
@@ -23,7 +25,13 @@ const Home = () => {
             <Typography variant="body1" className="description" paragraph>
               Entre no ComLiv e transforme sua experiência de leitura! Aqui, você pode criar e participar de clubes que conectam amantes de livros de todas as idades. Compartilhe suas histórias favoritas, troque ideias e descubra novas perspectivas com pessoas que também são apaixonadas pela literatura. Venha fazer parte dessa comunidade literária vibrante!
             </Typography>
-            <Button variant="contained" color="secondary" className="botão-club">
+            <Button 
+            variant="contained" 
+            color="secondary" 
+            className="botão-club"
+            component={Link}
+            to="/Cadastrar"
+            >
               Clubinar
             </Button>
           </Box>
