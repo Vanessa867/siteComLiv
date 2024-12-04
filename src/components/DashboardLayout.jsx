@@ -55,7 +55,7 @@ const DashboardLayout = ({ children }) => {
           '& .MuiDrawer-paper': {
             width: 240,
             boxSizing: 'border-box',
-            backgroundColor: '#F9F5FF',
+            backgroundColor: '#FFFFF',
             color: '#6A1B9A',
           },
         }}
@@ -74,22 +74,32 @@ const DashboardLayout = ({ children }) => {
               '&:hover': { backgroundColor: '#5A1280' },
             }}
             fullWidth
-            onClick={() => navigate('/CreateClub')} 
+            onClick={() => navigate('/CreateClub')}
           >
             Criar Clube
           </Button>
         </Box>
+
         <List>
-          <Typography variant="h6" sx={{ padding: '16px', color: '#6A1B9A' }}>
-            Navegação
+          <Typography variant="h6" sx={{ padding: '16px', color: '#9A358A' }}>
+            Menu
           </Typography>
-          <ListItem button component={Link} to="/home">
-            <HomeIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button component={Link} to="/explorar">
-            <ExploreIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Explorar" />
+          <ListItem
+            button
+            component={Link}
+            to="/HomeDepoisDoLogin"
+            sx={{
+              textDecoration: 'none',
+              color: '#9A358A',
+            }}
+          >
+            <HomeIcon sx={{ color: '#9A358A', marginRight: '8px' }} />
+            <ListItemText
+              primary="Home"
+              sx={{
+                color: '#9A358A',
+              }}
+            />
           </ListItem>
 
           <Divider />
@@ -97,27 +107,80 @@ const DashboardLayout = ({ children }) => {
           <Typography variant="h6" sx={{ padding: '16px', color: '#6A1B9A' }}>
             Clubes
           </Typography>
-          <ListItem button component={Link} to="/participando">
-            <GroupIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Participando" />
+          <ListItem
+            button
+            component={Link}
+            to="/Participando"
+            sx={{
+              textDecoration: 'none',
+              color: '#9A358A',
+            }}
+          >
+            <GroupIcon sx={{ color: '#9A358A', marginRight: '8px' }} />
+            <ListItemText
+              primary="Participando"
+              sx={{
+                color: '#9A358A',
+              }}
+            />
           </ListItem>
-          <ListItem button component={Link} to="/meus-clubes">
-            <FavoriteIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Meus clubes" />
+          <ListItem
+            button
+            component={Link}
+            to="/MeusClubes"
+            sx={{
+              textDecoration: 'none',
+              color: '#9A358A',
+            }}
+          >
+            <FavoriteIcon sx={{ color: '#9A358A', marginRight: '8px' }} />
+            <ListItemText
+              primary="Meus Clubes"
+              sx={{
+                color: '#9A358A',
+              }}
+            />
           </ListItem>
         </List>
+
         <Divider />
         <List>
           <Typography variant="h6" sx={{ padding: '16px', color: '#6A1B9A' }}>
             Usuário
           </Typography>
-          <ListItem button component={Link} to="/perfil">
-            <AccountCircleIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Perfil" />
+          <ListItem
+            button
+            component={Link}
+            to="/Perfil"
+            sx={{
+              textDecoration: 'none',
+              color: '#9A358A',
+            }}
+          >
+            <AccountCircleIcon sx={{ color: '#9A358A', marginRight: '8px' }} />
+            <ListItemText
+              primary="Perfil"
+              sx={{
+                color: '#9A358A',
+              }}
+            />
           </ListItem>
-          <ListItem button component={Link} to="/config">
-            <SettingsIcon sx={{ color: '#6A1B9A' }} />
-            <ListItemText primary="Configurações" />
+          <ListItem
+            button
+            component={Link}
+            to="/Config"
+            sx={{
+              textDecoration: 'none',
+              color: '#9A358A',
+            }}
+          >
+            <SettingsIcon sx={{ color: '#9A358A', marginRight: '8px' }} />
+            <ListItemText
+              primary="Configurações"
+              sx={{
+                color: '#9A358A',
+              }}
+            />
           </ListItem>
           <ListItem button onClick={handleOpenDialog}>
             <ExitToAppIcon sx={{ color: '#6A1B9A' }} />

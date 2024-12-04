@@ -1,50 +1,45 @@
 import React from "react";
-import { Box, Typography, TextField } from '@mui/material';
-import DashboardLayout from '../components/DashboardLayout'; // Importa o layout do dashboard
+import { Box, TextField, InputAdornment } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search"; // Ícone de busca do Material-UI
+import DashboardLayout from "../components/DashboardLayout";
 
 const HomeDepoisDoLogin = () => {
-  const userSession = JSON.parse(localStorage.getItem('userSession'));
-  const userName = userSession ? userSession.userName : '';
-
   const dynamicStyles = {
-    welcomeMessage: {
-      color: "#7d29d9",
-      fontSize: "28px",
-      marginBottom: "20px",
-    },
     searchBox: {
       display: "flex",
       alignItems: "center",
       backgroundColor: "#f3eaf7",
-      borderRadius: "25px",
+      borderRadius: "8px", 
       padding: "5px 15px",
-      margin: "20px 0",
+      marginBottom: "20px", 
+      width: "100%", 
+      maxWidth: "800px", 
+      margin: "0 auto", 
     },
     searchTextField: {
-      paddingLeft: "10px",
       fontSize: "14px",
-      width: "100%", // Garantindo que a barra de busca ocupe todo o espaço
+      width: "100%", // O campo ocupa 100% do contêiner pai
     },
   };
 
   return (
     <DashboardLayout>
-      <Box sx={{ padding: '20px' }}>
-        {/* Mensagem de boas-vindas */}
-        <Typography sx={dynamicStyles.welcomeMessage}>
-          Oiiee, {userName}
-        </Typography>
-        <Typography variant="body1">
-          Bem-vindo(a) ao ComLiv, qual o clube de hoje?
-        </Typography>
-
+      <Box sx={{ padding: "20px" }}>
         {/* Barra de busca */}
         <Box sx={dynamicStyles.searchBox}>
           <TextField
             fullWidth
             placeholder="Buscar livros, clubes e usuários"
             variant="standard"
-            InputProps={{ disableUnderline: true }}
+            InputProps={{
+              disableUnderline: true, 
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "#7d29d9" }} /> {/* Ícone de busca */}
+                </InputAdornment>
+              ),
+              sx: { padding: "8px 0" }, 
+            }}
             sx={dynamicStyles.searchTextField}
           />
         </Box>
