@@ -9,10 +9,10 @@ const NavigationButtons = () => {
   const canGoBack = location.pathname !== '/';
 
   return (
-    <div style={{ marginBottom: '20px' }}>
-      {canGoBack && (
+    <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '-20px' }}>      {canGoBack && (
         <Button
           variant="outlined"
+          color="secondary"
           onClick={() => navigate(-1)}
         >
           Voltar
