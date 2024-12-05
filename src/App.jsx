@@ -32,7 +32,7 @@ const theme = createTheme({
 
 // Componente que renderiza o Header condicionalmente
 const AppContent = () => {
-  const location = useLocation(); // Obtém a localização atual
+  const location = useLocation(); 
 
   const handleLogin = () => {
     console.log('Usuário logado com sucesso!');
@@ -65,7 +65,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <AppContent /> {/* Usa o componente que renderiza o Header condicionalmente */}
+        <AppContent /> 
       </Router>
     </ThemeProvider>
   );
