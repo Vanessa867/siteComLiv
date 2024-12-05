@@ -18,7 +18,7 @@ const CreateClub = () => {
     const newClub = { name, description, startDate, endDate };
 
     try {
-      const response = await fetch('http://localhost:8080/api/clubs', {
+      const response = await fetch('http://localhost:8080/api/ComLiv/Clubs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newClub),
