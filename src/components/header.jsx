@@ -19,7 +19,7 @@ const Header = () => {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' }); 
         }
-      }, 100); // Aguarda a navegação
+      }, 100); 
     } else {
       const element = document.getElementById('como-funciona');
       if (element) {
