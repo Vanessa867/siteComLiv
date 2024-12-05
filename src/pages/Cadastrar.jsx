@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Importação do Link e useNavigate
+import { useNavigate, Link } from 'react-router-dom'; 
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
 import NavigationButtons from '../components/NavigationButtons';
 
@@ -11,7 +11,7 @@ const Cadastrar = () => {
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate(); // Instância do hook
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const Cadastrar = () => {
         setSenha('');
         setRepetirSenha('');
         
-        // Redirecionar para a página Home
+        // Redireciona para a página Home
         navigate('/HomeDepoisDoLogin');
       } else {
         setMensagem('Erro no cadastro. Tente novamente.');
@@ -130,7 +130,6 @@ const Cadastrar = () => {
             </form>
             {mensagem && <Typography color="error">{mensagem}</Typography>}
             
-            {/* Link para o login */}
             <Typography variant="body2" style={{ marginTop: '20px' }}>
               Já tem uma conta? <Link to="/login" style={{ color: '#9A358A', textDecoration: 'none' }}>Faça login!</Link>
             </Typography>

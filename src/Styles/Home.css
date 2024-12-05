@@ -46,6 +46,13 @@ html, body {
   margin-bottom: 2rem;
 }
 
+.new-section-title{
+  color: #350052;
+}
+.section-title{
+  color:#350052;
+}
+
 .botão-club {
   background-color: #350052;
   color: #ffffff;
@@ -125,19 +132,6 @@ html, body {
   color: #5e3c89;
   font-weight: bold;
   margin-bottom: 10px;
-}
-
-footer {
-  text-align: center;
-  color: #8734d8;
-  margin-top: 2rem;
-}
-
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
 }
 
 .community-image .image {
