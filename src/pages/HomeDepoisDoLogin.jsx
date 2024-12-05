@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, TextField, InputAdornment } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"; // Ícone de busca do Material-UI
+import SearchIcon from "@mui/icons-material/Search"; 
 import DashboardLayout from "../components/DashboardLayout";
 
 const HomeDepoisDoLogin = () => {
@@ -18,14 +18,13 @@ const HomeDepoisDoLogin = () => {
     },
     searchTextField: {
       fontSize: "14px",
-      width: "100%", // O campo ocupa 100% do contêiner pai
+      width: "100%", 
     },
   };
 
   return (
     <DashboardLayout>
       <Box sx={{ padding: "20px" }}>
-        {/* Barra de busca */}
         <Box sx={dynamicStyles.searchBox}>
           <TextField
             fullWidth
@@ -35,7 +34,7 @@ const HomeDepoisDoLogin = () => {
               disableUnderline: true, 
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "#7d29d9" }} /> {/* Ícone de busca */}
+                  <SearchIcon sx={{ color: "#7d29d9" }} /> 
                 </InputAdornment>
               ),
               sx: { padding: "8px 0" }, 

@@ -61,7 +61,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <AppContent /> {/* Usa o componente que renderiza o Header condicionalmente */}
+        <AppContent /> 
       </Router>
     </ThemeProvider>
   );
