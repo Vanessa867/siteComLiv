@@ -1,155 +1,157 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Typography, Paper } from '@mui/material';
-import NavigationButtons from '../components/NavigationButtons';
-
-// Simulando o "usuário logado" com um ID fictício
-const userId = "12345"; // Simulação de usuário logado
+import React, { useState, useEffect } from "react";
+import { Box, TextField, Button, Typography, Container } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const CreateClub = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [message, setMessage] = useState('');
-  const [meetings, setMeetings] = useState([]);  // Lista de reuniões
-  const [meetingTitle, setMeetingTitle] = useState('');  // Título da reunião
-  const [meetingDate, setMeetingDate] = useState('');    // Data da reunião
-  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const navigate = useNavigate(); // Para redirecionar após o envio do formulário
 
-  // Função para adicionar uma reunião
-  const handleAddMeeting = () => {
-    if (meetingTitle && meetingDate) {
-      const newMeeting = { title: meetingTitle, date: meetingDate };
-      setMeetings([...meetings, newMeeting]);
-      setMeetingTitle('');
-      setMeetingDate('');
-    } else {
-      setMessage('Por favor, preencha o título e a data do encontro.');
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const newClub = {
-      name,
-      description,
-      startDate,
-      endDate,
-      userId,  // Associando o usuário que criou o clube
-      meetings, // Adicionando as reuniões ao clube
+  // Função para buscar clubes, exemplo do useEffect para pegar clubes
+  useEffect(() => {
+    const fetchClubs = async () => {
+      try {
+        const response = await fetch("https://parseapi.back4app.com/classes/Clubes", {
+          method: "POST",
+          headers: {
+            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM", 
+            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ", 
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        console.log("Clubes:", data); // Exemplo de como exibir os clubes
+      } catch (error) {
+        console.error("Erro ao buscar clubes:", error);
+      }
     };
 
+    fetchClubs();
+  }, []); 
+  const handleCreateClub = async (e) => {
+    e.preventDefault();
+
+    
+    if (!title || !description) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+   
+    const clubData = {
+      title,
+      description,
+    };
+
+  
+    const apiUrl = "https://parseapi.back4app.com/classes/Clubes"; 
+    const appId = "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM";
+    const restApiKey = "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ"; 
+
     try {
-      const response = await fetch('http://localhost:8080/api/ComLiv/Clubs', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newClub),
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "X-Parse-Application-Id": appId,
+          "X-Parse-REST-API-Key": restApiKey,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(clubData),
       });
 
       if (response.ok) {
-        setMessage('Clube criado com sucesso!');
-        navigate('/'); // Redireciona para a Home após criar o clube
+        const data = await response.json();
+        console.log("Clube criado com sucesso:", data);
+
+        
+        navigate("/HomeDepoisDoLogin");
       } else {
-        setMessage('Erro ao criar o clube. Tente novamente.');
+        throw new Error("Erro ao criar clube.");
       }
     } catch (error) {
-      console.error('Erro:', error);
-      setMessage('Erro ao conectar com o servidor.');
+      console.error("Erro ao criar clube:", error);
+      alert("Houve um erro ao criar o clube. Tente novamente.");
     }
   };
 
   return (
-    <Paper style={{ padding: '20px', margin: '20px auto', maxWidth: '600px' }}>
-      <Typography variant="h5" style={{ marginBottom: '20px' }}>
-        Criar Clube
-      </Typography>
-      <NavigationButtons />
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Nome do Clube"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-        />
-        <TextField
-          label="Descrição"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-        />
-        <TextField
-          label="Data de Início"
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-        />
-        <TextField
-          label="Data de Fim"
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-        />
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          padding: "30px",
+          backgroundColor: "#ffffff",
+          borderRadius: "12px",
+          boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+          marginTop: "50px",
+          textAlign: "center",
+        }}
+      >
+        <Typography variant="h4" sx={{ marginBottom: "30px", color: "#6A1B9A", fontWeight: "600" }}>
+          Criar Novo Clube
+        </Typography>
 
-        {/* Reuniões */}
-        <Typography variant="h6" style={{ marginTop: '20px' }}>Adicionar Encontro</Typography>
-        <TextField
-          label="Título do Encontro"
-          value={meetingTitle}
-          onChange={(e) => setMeetingTitle(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-        />
-        <TextField
-          label="Data do Encontro"
-          type="date"
-          value={meetingDate}
-          onChange={(e) => setMeetingDate(e.target.value)}
-          fullWidth
-          required
-          margin="normal"
-          InputLabelProps={{ shrink: true }}
-        />
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={handleAddMeeting}
-          style={{ marginTop: '20px' }}
-        >
-          Adicionar Encontro
-        </Button>
-
-        <Typography variant="h6" style={{ marginTop: '20px' }}>Encontros Agendados</Typography>
-        {meetings.length > 0 ? (
-          meetings.map((meeting, index) => (
-            <div key={index}>
-              <Typography>{`Título: ${meeting.title} | Data: ${meeting.date}`}</Typography>
-            </div>
-          ))
-        ) : (
-          <Typography>Nenhum encontro agendado.</Typography>
-        )}
-
-        <Button type="submit" variant="contained" color="primary" fullWidth style={{ marginTop: '20px' }}>
-          Criar Clube
-        </Button>
-      </form>
-      {message && <Typography style={{ marginTop: '20px', color: 'red' }}>{message}</Typography>}
-    </Paper>
+        <form onSubmit={handleCreateClub}>
+          <TextField
+            label="Título do Clube"
+            variant="outlined"
+            fullWidth
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            sx={{
+              marginBottom: "20px",
+              borderRadius: "8px",
+              backgroundColor: "#f3eaf7",
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: "#9A358A", 
+                },
+              },
+            }}
+          />
+          <TextField
+            label="Descrição"
+            variant="outlined"
+            fullWidth
+            required
+            multiline
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            sx={{
+              marginBottom: "20px",
+              borderRadius: "8px",
+              backgroundColor: "#f3eaf7",
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: "#9A358A", 
+                },
+              },
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{
+              backgroundColor: "#6A1B9A",
+              color: "#ffffff",
+              padding: "12px",
+              borderRadius: "8px",
+              textTransform: "none",
+              fontSize: "16px",
+              '&:hover': {
+                backgroundColor: "#9A358A", 
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+              },
+            }}
+          >
+            Criar Clube
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 };
 

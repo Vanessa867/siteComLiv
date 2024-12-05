@@ -9,12 +9,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import card from './components/cardClub';
 import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 import Config from './pages/Config';
-import createclub from './components/CreateClub';
 import CreateClub from './components/CreateClub';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
-
-
+import Participando from './pages/Participando';
+import VerClube from './pages/VerClube';
 
 const theme = createTheme({
   palette: {
@@ -37,13 +36,23 @@ const AppContent = () => {
   const handleLogin = () => {
     console.log('Usuário logado com sucesso!');
   };
-  
+
+  // Define as páginas onde o Header não deve ser exibido
+  const noHeaderPaths = [
+    '/cadastrar',
+    '/login',
+    '/HomeDepoisDoLogin',
+    '/CreateClub',
+    '/Config',
+    '/Participando',
+    '/VerClube'
+  ];
+
   return (
     <>
-       {/* O Header será exibido em todas as rotas, exceto em cadastrar e login */}
-       {location.pathname !== '/cadastrar' && location.pathname !== '/Login' && location.pathname !== '/HomeDepoisDoLogin' && location.pathname !== '/Config' && <Header />}
-      
-      
+      {/* Renderiza o Header, exceto nas rotas especificadas */}
+      {!noHeaderPaths.includes(location.pathname) && <Header />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
@@ -52,10 +61,11 @@ const AppContent = () => {
         <Route path="/Login" element={<Login onLogin={handleLogin} />} />
         <Route path="/card" element={<card />} />
         <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} /> 
-        <Route path="/CreateClub" element={<CreateClub />}/>
+        <Route path="/CreateClub" element={<CreateClub />} />
         <Route path="/Config" element={<Config />} />
         <Route path="/Perfil" element={<Perfil />} /> 
-       <Route path="/EditarPerfil" element={<EditarPerfil />} />
+        <Route path="/EditarPerfil" element={<EditarPerfil />} />
+        <Route path="/Participando" element={<Participando />} />
       </Routes>
     </>
   );
