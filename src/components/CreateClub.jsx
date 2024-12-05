@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Typography, Paper } from '@mui/material';
+import NavigationButtons from '../components/NavigationButtons';
+
 
 const CreateClub = () => {
   const [name, setName] = useState('');
@@ -39,6 +41,7 @@ const CreateClub = () => {
       <Typography variant="h5" style={{ marginBottom: '20px' }}>
         Criar Clube
       </Typography>
+      <NavigationButtons />
       <form onSubmit={handleSubmit}>
         <TextField
           label="Nome do Clube"

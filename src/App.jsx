@@ -11,6 +11,8 @@ import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 import Config from './pages/Config';
 import createclub from './components/CreateClub';
 import CreateClub from './components/CreateClub';
+import Perfil from './pages/Perfil';
+import EditarPerfil from './pages/EditarPerfil';
 
 
 
@@ -52,6 +54,8 @@ const AppContent = () => {
         <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} /> 
         <Route path="/CreateClub" element={<CreateClub />}/>
         <Route path="/Config" element={<Config />} />
+        <Route path="/Perfil" element={<Perfil />} /> 
+       <Route path="/EditarPerfil" element={<EditarPerfil />} />
       </Routes>
     </>
   );

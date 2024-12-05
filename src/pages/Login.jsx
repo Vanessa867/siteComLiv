@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom'; // Importação para navegação
+import NavigationButtons from '../components/NavigationButtons';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -88,6 +89,7 @@ const Login = ({ onLogin }) => {
               height: '80%',
             }}
           >
+             <NavigationButtons />
             <Typography variant="h5" style={{ color: '#9A358A' }} gutterBottom>
               Login
             </Typography>

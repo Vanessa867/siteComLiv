@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Importação do Link e useNavigate
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
+import NavigationButtons from '../components/NavigationButtons';
 
 const Cadastrar = () => {
   const [nome, setNome] = useState('');
@@ -64,6 +65,7 @@ const Cadastrar = () => {
 
         <Grid item xs={12} sm={8} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#ffffff', height: '80%' }}>
+          <NavigationButtons />  
             <Typography variant="h5" style={{ color: '#9A358A' }} gutterBottom>
               Cadastre-se!
             </Typography>

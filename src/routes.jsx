@@ -4,6 +4,7 @@ import Planos from './pages/Planos';
 import Sobre from './pages/Sobre';
 import ComoFunciona from './pages/ComoFunciona';
 import Cadastrar from './pages/Cadastrar';
+import EditarPerfil from './pages/EditarPerfil';
 
 function AppRoutes() {
   return (
@@ -15,6 +16,8 @@ function AppRoutes() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/cadastrar" element={<Cadastrar />} />
         <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} />
+        <Route path="/Perfil" element={<Perfil />} />
+        <Route path="/EditarPerfil" element={<EditarPerfil />} />
 
       </Routes>
     </Router>
