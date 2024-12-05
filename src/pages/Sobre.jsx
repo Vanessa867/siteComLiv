@@ -1,10 +1,8 @@
 import React from 'react';
 import { Box, Typography, Grid, Paper } from '@mui/material';
-
-// Importe as imagens
-import sobreImagem from '../images/amigos.png'; // Imagem de "Sobre Nós"
-import visaoImagem from '../images/visao.png'; // Imagem de "Nossa Visão"
-import tecnologiaImagem from '../images/pcz.png'; // Imagem de "Como Funciona Nossa Tecnologia"
+import sobreImagem from '../images/amigos.png'; 
+import visaoImagem from '../images/visao.png'; 
+import tecnologiaImagem from '../images/pcz.png'; 
 
 const Sobre = () => {
   return (
@@ -20,7 +18,6 @@ const Sobre = () => {
           </Typography>
         </Grid>
 
-        {/* Imagem de Sobre Nós */}
         <Grid item xs={12} md={6}>
           <img 
             src={sobreImagem} 
@@ -30,13 +27,11 @@ const Sobre = () => {
         </Grid>
       </Grid>
 
-      {/* Seção Nossa Visão */}
       <Grid container spacing={4} alignItems="center">
         {/* Título acima do texto */}
         <Grid item xs={12}>
         </Grid>
 
-        {/* Imagem à esquerda */}
         <Grid item xs={12} md={6}>
           <img 
             src={visaoImagem} 
@@ -45,7 +40,6 @@ const Sobre = () => {
           />
         </Grid>
 
-        {/* Texto à direita */}
         <Grid item xs={12} md={6}>
           <Typography variant="body1" sx={{ color: '#333', lineHeight: 1.6 }}>
           <Typography variant="h4" sx={{ color: '#6A1B9A', marginBottom: '20px', fontWeight: 'bold' }}>
@@ -56,14 +50,11 @@ const Sobre = () => {
         </Grid>
       </Grid>
 
-      {/* Seção Como Funciona Nossa Tecnologia */}
       <Grid container spacing={4} alignItems="center">
-        {/* Título acima do texto */}
         <Grid item xs={12}>
       
         </Grid>
 
-        {/* Texto à esquerda */}
         <Grid item xs={12} md={6}>
           <Typography variant="body1" sx={{ color: '#333', lineHeight: 1.6 }}>
           <Typography variant="h4" sx={{ color: '#6A1B9A', marginBottom: '20px', fontWeight: 'bold' }}>
@@ -73,7 +64,6 @@ const Sobre = () => {
           </Typography>
         </Grid>
 
-        {/* Imagem à direita */}
         <Grid item xs={12} md={6}>
           <img 
             src={tecnologiaImagem} 
@@ -83,10 +73,8 @@ const Sobre = () => {
         </Grid>
       </Grid>
 
-      {/* Espaço extra entre as seções */}
       <Box sx={{ marginBottom: '40px' }} />
 
-      {/* Seção Nossas Tecnologias */}
       <Typography variant="h4" sx={{ color: '#6A1B9A', marginBottom: '40px', fontWeight: 'bold' }}>
         Nossas Tecnologias
       </Typography>
@@ -97,7 +85,7 @@ const Sobre = () => {
           { name: 'CSS', description: 'Usado para o design e estilo da aplicação, proporcionando uma interface limpa e intuitiva.' },
           { name: 'Vercel', description: 'Plataforma de hospedagem do site, garantindo desempenho e escalabilidade.' },
           { name: 'Spring Boot', description: 'Framework Java para construção de aplicações backend robustas e escaláveis.' },
-          { name: 'Java', description: 'Linguagem de programação amplamente utilizada para o desenvolvimento de aplicações.' }
+          { name: 'Javascript', description: 'Linguagem de programação amplamente utilizada para o desenvolvimento de aplicações.' }
         ].map((tech, index) => (
           <Grid item xs={8} md={4} key={index}>
             <Paper 

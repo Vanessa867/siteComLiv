@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
-import { Link } from 'react-router-dom'; // Importação para navegação
+import { Link } from 'react-router-dom'; 
 import NavigationButtons from '../components/NavigationButtons';
 
 const Login = ({ onLogin }) => {
@@ -53,7 +53,6 @@ const Login = ({ onLogin }) => {
   return (
     <div className='container'>
       <Grid container style={{ height: '100vh' }}>
-        {/* Texto à esquerda */}
         <Grid
           item
           xs={12}
@@ -74,7 +73,6 @@ const Login = ({ onLogin }) => {
           </Paper>
         </Grid>
 
-        {/* Formulário à direita */}
         <Grid
           item
           xs={12}
@@ -131,7 +129,6 @@ const Login = ({ onLogin }) => {
             </form>
             {mensagem && <Typography color="error">{mensagem}</Typography>}
 
-            {/* Texto e link para cadastro */}
             <Typography variant="body2" style={{ marginTop: '20px' }}>
               Ainda não tem uma conta?{' '}
               <Link to="/cadastrar" style={{ color: '#9A358A', textDecoration: 'none' }}>

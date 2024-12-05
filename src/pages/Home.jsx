@@ -126,8 +126,6 @@ const Home = () => {
             </Box>
           </Box>
         </Box>
-
-
       </Container>
       <Footer /> 
     </div>
