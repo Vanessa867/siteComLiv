@@ -12,6 +12,8 @@ import Perfil from './pages/Perfil';
 import CriarClube from './pages/CriarClube';
 import Participando from './pages/Participando';
 import '../src/App.css';
+import MeusClubes from './pages/MeusClubes';
+import GerenciarClube from './pages/GerenciarClube';
 
 
 
@@ -55,6 +57,8 @@ const AppContent = () => {
         <Route path="/Config" element={<Config />} />
         <Route path="/Perfil" element={<Perfil />} /> 
        <Route path="/Participando" element={<Participando />} />
+       <Route path="/MeusClubes" element={<MeusClubes />} />
+       <Route path='/GerenciarClube' element={<GerenciarClube />} />
       </Routes>
     </>
   );
