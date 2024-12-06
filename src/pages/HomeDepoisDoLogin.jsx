@@ -29,10 +29,16 @@ const HomeDepoisDoLogin = () => {
   useEffect(() => {
     const fetchClubs = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/ComLiv/Clubs");
+        const response = await fetch("https://parseapi.back4app.com/classes/Clubes", {
+          method: "GET",
+          headers: {
+            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+          },
+        });
         if (response.ok) {
           const data = await response.json();
-          setClubs(data);
+          setClubs(data.results);  // Atualiza o estado com os clubes
         } else {
           console.error("Erro ao buscar clubes.");
         }
@@ -42,11 +48,11 @@ const HomeDepoisDoLogin = () => {
     };
 
     fetchClubs();
-  }, []);
+  }, []);  // A dependência vazia garante que a requisição seja feita apenas uma vez ao montar o componente
 
   // Filtrar clubes com base na busca
   const filteredClubs = clubs.filter((club) =>
-    club.name.toLowerCase().includes(searchTerm.toLowerCase())
+    club.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -76,9 +82,9 @@ const HomeDepoisDoLogin = () => {
         </Typography>
         <List>
           {filteredClubs.map((club) => (
-            <ListItem key={club.id} sx={{ borderBottom: "1px solid #ccc" }}>
+            <ListItem key={club.objectId} sx={{ borderBottom: "1px solid #ccc" }}>
               <ListItemText
-                primary={club.name}
+                primary={club.title}
                 secondary={`Descrição: ${club.description} | Início: ${club.startDate} | Fim: ${club.endDate}`}
               />
             </ListItem>
