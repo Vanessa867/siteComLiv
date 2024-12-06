@@ -13,6 +13,7 @@ import CreateClub from './components/CreateClub';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
 import Participando from './pages/Participando';
+import '../src/App.css';
 
 
 
@@ -41,7 +42,7 @@ const AppContent = () => {
   return (
     <>
        {/* O Header será exibido em todas as rotas, exceto em cadastrar e login */}
-       {location.pathname !== '/cadastrar' && location.pathname !== '/Login' && location.pathname !== '/HomeDepoisDoLogin' && location.pathname !== '/Config' && <Header />}
+       {location.pathname !== '/cadastrar' && location.pathname !== '/Login' && location.pathname !== '/Perfil' && location.pathname !== '/HomeDepoisDoLogin' && location.pathname !== '/Config' && <Header />}
       
       
       <Routes>
@@ -66,7 +67,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <AppContent /> 
+        <div className="app-container"> {/* Certifique-se de que o container tenha 100% de altura */}
+          <AppContent />
+        </div>
       </Router>
     </ThemeProvider>
   );
