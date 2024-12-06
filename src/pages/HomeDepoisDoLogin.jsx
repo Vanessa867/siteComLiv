@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, InputAdornment, Typography, List, ListItem, ListItemText } from "@mui/material";
+import { Box, TextField, InputAdornment, Typography, Button, Card, CardContent, CardActions } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DashboardLayout from "../components/DashboardLayout";
 
 const HomeDepoisDoLogin = () => {
   const [clubs, setClubs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const dynamicStyles = {
     searchBox: {
@@ -23,30 +25,65 @@ const HomeDepoisDoLogin = () => {
       fontSize: "14px",
       width: "100%",
     },
+    card: {
+      marginBottom: "20px",
+      borderRadius: "8px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      transition: "transform 0.2s ease-in-out",
+      "&:hover": {
+        transform: "scale(1.05)",
+      },
+    },
+    cardContent: {
+      padding: "20px",
+    },
+    cardActions: {
+      display: "flex",
+      justifyContent: "flex-end",
+    },
+    button: {
+      backgroundColor: "#7d29d9",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "#5b1b99",
+      },
+    },
   };
 
-  // Buscar clubes da API
+  // Fetching clubs from API
   useEffect(() => {
     const fetchClubs = async () => {
+      setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/ComLiv/Clubs");
+        const response = await fetch("https://parseapi.back4app.com/classes/Clubes", {
+          method: "GET",
+          headers: {
+            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM", 
+            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ", 
+            "Content-Type": "application/json"
+          }
+        });
+
         if (response.ok) {
           const data = await response.json();
-          setClubs(data);
+          setClubs(data.results); // Assuming response contains 'results'
         } else {
-          console.error("Erro ao buscar clubes.");
+          setError("Erro ao buscar clubes.");
         }
       } catch (error) {
-        console.error("Erro ao conectar com o servidor:", error);
+        console.error('Erro ao conectar com o servidor:', error);
+        setError("Erro ao conectar com o servidor.");
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchClubs();
   }, []);
 
-  // Filtrar clubes com base na busca
+  // Filter clubs based on search term
   const filteredClubs = clubs.filter((club) =>
-    club.name.toLowerCase().includes(searchTerm.toLowerCase())
+    club.nome.toLowerCase().includes(searchTerm.toLowerCase()) // Adjust if API returns a different key
   );
 
   return (
@@ -58,7 +95,7 @@ const HomeDepoisDoLogin = () => {
             placeholder="Buscar livros, clubes e usuários"
             variant="standard"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o termo de busca
+            onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
               disableUnderline: true,
               startAdornment: (
@@ -74,16 +111,33 @@ const HomeDepoisDoLogin = () => {
         <Typography variant="h5" style={{ marginBottom: "20px", textAlign: "center" }}>
           Clubes Disponíveis
         </Typography>
-        <List>
-          {filteredClubs.map((club) => (
-            <ListItem key={club.id} sx={{ borderBottom: "1px solid #ccc" }}>
-              <ListItemText
-                primary={club.name}
-                secondary={`Descrição: ${club.description} | Início: ${club.startDate} | Fim: ${club.endDate}`}
-              />
-            </ListItem>
-          ))}
-        </List>
+
+        {/* Display loading or error message */}
+        {loading ? (
+          <Typography variant="h6" align="center">Carregando clubes...</Typography>
+        ) : error ? (
+          <Typography variant="h6" align="center" color="error">{error}</Typography>
+        ) : (
+          <Box>
+            {filteredClubs.map((club) => (
+              <Card key={club.objectId} sx={dynamicStyles.card}>
+                <CardContent sx={dynamicStyles.cardContent}>
+                  <Typography variant="h6" gutterBottom>
+                    {club.nome}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Descrição: {club.descricao || "Sem descrição"}
+                  </Typography>
+                </CardContent>
+                <CardActions sx={dynamicStyles.cardActions}>
+                  <Button variant="contained" sx={dynamicStyles.button}>
+                    Participar
+                  </Button>
+                </CardActions>
+              </Card>
+            ))}
+          </Box>
+        )}
       </Box>
     </DashboardLayout>
   );

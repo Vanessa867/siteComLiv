@@ -74,7 +74,7 @@ const DashboardLayout = ({ children }) => {
               '&:hover': { backgroundColor: '#5A1280' },
             }}
             fullWidth
-            onClick={() => navigate('/CreateClub')}
+            onClick={() => navigate('/CriarClube')}
           >
             Criar Clube
           </Button>
