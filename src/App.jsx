@@ -6,12 +6,10 @@ import Header from './components/header';
 import Cadastrar from './pages/Cadastrar';
 import Login from './pages/Login';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import card from './components/cardClub';
 import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 import Config from './pages/Config';
 import CreateClub from './components/CreateClub';
 import Perfil from './pages/Perfil';
-import EditarPerfil from './pages/EditarPerfil';
 import Participando from './pages/Participando';
 import '../src/App.css';
 
@@ -55,7 +53,6 @@ const AppContent = () => {
         <Route path="/CreateClub" element={<CreateClub />}/>
         <Route path="/Config" element={<Config />} />
         <Route path="/Perfil" element={<Perfil />} /> 
-       <Route path="/EditarPerfil" element={<EditarPerfil />} />
        <Route path="/Participando" element={<Participando />} />
       </Routes>
     </>
