@@ -1,0 +1,30 @@
+.profile-page { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px; 
+}
+.profile-info { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    border: 1px solid #ddd; 
+    padding: 20px; 
+    border-radius: 10px; 
+    background-color: #f9f9f9; 
+}
+.profile-info div { 
+    margin-bottom: 10px; 
+}
+button { 
+    background-color: #007bff;
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+button:disabled { 
+    background-color: #c0c0c0;
+     cursor: not-allowed; 
+}

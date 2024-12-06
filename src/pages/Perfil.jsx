@@ -1,58 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { Avatar, Typography, Button, Grid, Paper } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import Parse from 'parse';
-import NavigationButtons from '../components/NavigationButtons';
+import React, { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import '../Styles/Perfil.css'; // Certifique-se de que esse arquivo existe ou remova essa linha
 
 const Perfil = () => {
-  const [userData, setUserData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+  });
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const currentUser = Parse.User.current();
-        if (!currentUser) {
-          alert('Você precisa estar autenticado.');
-          navigate('/login');
-          return;
-        }
-
-        const nome = currentUser.get('username') || 'Nome não definido';
-        const email = currentUser.get('email') || 'Email não definido';
-        const foto = currentUser.get('foto');
-
-        setUserData({ nome, email, foto });
-      } catch (error) {
-        console.error('Erro ao buscar dados do usuário:', error);
-        alert('Erro ao carregar os dados do perfil.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserData();
-  }, [navigate]);
-
-  if (loading) return <Typography>Carregando...</Typography>;
+  const handleSubmit = (values) => {
+    // Aqui você pode simplesmente logar os dados no console para testar
+    console.log('Dados atualizados:', values);
+    setUser(values); // Atualiza o estado com os novos dados do formulário
+  };
 
   return (
-    <Grid container style={{ height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
-      <Paper style={{ padding: '50px', textAlign: 'center', backgroundColor: '#ffffff' }}>
-      <NavigationButtons />
-        <Avatar
-          src={userData.foto || ''}
-          alt="Foto do usuário"
-          sx={{ width: 120, height: 120, margin: '0 auto', marginBottom: '20px' }}
-        />
-        <Typography variant="h5" gutterBottom>{userData.nome}</Typography>
-        <Typography variant="body1" gutterBottom>{userData.email}</Typography>
-        <Button variant="contained" color="primary" onClick={() => navigate('/editarperfil')}>
-          Editar Perfil
-        </Button>
-      </Paper>
-    </Grid>
+    <div className="profile-page">
+      <h1>Perfil de Usuário</h1>
+      <div className="profile-info">
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+
+        <Formik
+          initialValues={{ name: user.name, email: user.email }}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <div>
+                <label htmlFor="name">Nome</label>
+                <Field
+                  id="name"
+                  name="name"
+                  placeholder="Digite seu nome"
+                  type="text"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email">Email</label>
+                <Field
+                  id="email"
+                  name="email"
+                  placeholder="Digite seu email"
+                  type="email"
+                />
+              </div>
+
+              <button type="submit" disabled={isSubmitting}>
+                Atualizar
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
   );
 };
 
