@@ -1,0 +1,54 @@
+.config-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #9A358A, #5A5EFA);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .config-title {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .config-accordion {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .config-divider {
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .config-input {
+    border-radius: 5px;
+  }
+  
+  .config-button {
+    background-color: #5A5EFA;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+  
+  .config-button:hover {
+    background-color: #4A4ADA;
+    transform: scale(1.05);
+  }
+  
+  .config-switch {
+    color: #5A5EFA;
+    font-weight: bold;
+  }
+  
+  .config-icon {
+    color: #9A358A;
+    margin-right: 10px;
+  }
+  

@@ -14,8 +14,6 @@ import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
 import Participando from './pages/Participando';
 
-
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -30,7 +28,6 @@ const theme = createTheme({
   },
 });
 
-// Componente que renderiza o Header condicionalmente
 const AppContent = () => {
   const location = useLocation(); 
 
@@ -40,9 +37,7 @@ const AppContent = () => {
   
   return (
     <>
-       {/* O Header será exibido em todas as rotas, exceto em cadastrar e login */}
-       {location.pathname !== '/cadastrar' && location.pathname !== '/Login' && location.pathname !== '/HomeDepoisDoLogin' && location.pathname !== '/Config' && <Header />}
-      
+      {location.pathname === '/' || location.pathname === '/sobre' ? <Header /> : null} 
       
       <Routes>
         <Route path="/" element={<Home />} />
@@ -55,8 +50,8 @@ const AppContent = () => {
         <Route path="/CreateClub" element={<CreateClub />}/>
         <Route path="/Config" element={<Config />} />
         <Route path="/Perfil" element={<Perfil />} /> 
-       <Route path="/EditarPerfil" element={<EditarPerfil />} />
-       <Route path="/Participando" element={<Participando />} />
+        <Route path="/EditarPerfil" element={<EditarPerfil />} />
+        <Route path="/Participando" element={<Participando />} />
       </Routes>
     </>
   );
