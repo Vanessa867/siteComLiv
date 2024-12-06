@@ -9,10 +9,10 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import card from './components/cardClub';
 import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 import Config from './pages/Config';
-import createclub from './components/CreateClub';
 import CreateClub from './components/CreateClub';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
+import Participando from './pages/Participando';
 
 
 
@@ -56,6 +56,7 @@ const AppContent = () => {
         <Route path="/Config" element={<Config />} />
         <Route path="/Perfil" element={<Perfil />} /> 
        <Route path="/EditarPerfil" element={<EditarPerfil />} />
+       <Route path="/Participando" element={<Participando />} />
       </Routes>
     </>
   );
