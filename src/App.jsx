@@ -8,8 +8,8 @@ import Login from './pages/Login';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
 import Config from './pages/Config';
-import CreateClub from './components/CreateClub';
 import Perfil from './pages/Perfil';
+import CriarClube from './pages/CriarClube';
 import Participando from './pages/Participando';
 import '../src/App.css';
 
@@ -49,8 +49,8 @@ const AppContent = () => {
         <Route path="/cadastrar" element={<Cadastrar />} />
         <Route path="/Login" element={<Login onLogin={handleLogin} />} />
         <Route path="/card" element={<card />} />
-        <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} /> 
-        <Route path="/CreateClub" element={<CreateClub />}/>
+        <Route path="/HomeDepoisDoLogin" element={<HomeDepoisDoLogin />} />
+        <Route path='CriarClube' element={<CriarClube />} /> 
         <Route path="/Config" element={<Config />} />
         <Route path="/Perfil" element={<Perfil />} /> 
        <Route path="/Participando" element={<Participando />} />
