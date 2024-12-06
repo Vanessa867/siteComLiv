@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, InputAdornment, Typography, Button, Card, CardContent, CardActions } from "@mui/material";
+import { Box, TextField, InputAdornment, Typography, Button, Card, CardContent, CardActions, Grid } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DashboardLayout from "../components/DashboardLayout";
 
@@ -26,7 +26,6 @@ const HomeDepoisDoLogin = () => {
       width: "100%",
     },
     card: {
-      marginBottom: "20px",
       borderRadius: "8px",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       transition: "transform 0.2s ease-in-out",
@@ -42,7 +41,7 @@ const HomeDepoisDoLogin = () => {
       justifyContent: "flex-end",
     },
     button: {
-      backgroundColor: "#7d29d9",
+      backgroundColor: "#9A358A",
       color: "white",
       "&:hover": {
         backgroundColor: "#5b1b99",
@@ -92,7 +91,7 @@ const HomeDepoisDoLogin = () => {
         <Box sx={dynamicStyles.searchBox}>
           <TextField
             fullWidth
-            placeholder="Buscar livros, clubes e usuários"
+            placeholder="Buscar clubes"
             variant="standard"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -100,7 +99,7 @@ const HomeDepoisDoLogin = () => {
               disableUnderline: true,
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "#7d29d9" }} />
+                  <SearchIcon sx={{ color: "#9A358A" }} />
                 </InputAdornment>
               ),
               sx: { padding: "8px 0" },
@@ -118,25 +117,27 @@ const HomeDepoisDoLogin = () => {
         ) : error ? (
           <Typography variant="h6" align="center" color="error">{error}</Typography>
         ) : (
-          <Box>
+          <Grid container spacing={3}>
             {filteredClubs.map((club) => (
-              <Card key={club.objectId} sx={dynamicStyles.card}>
-                <CardContent sx={dynamicStyles.cardContent}>
-                  <Typography variant="h6" gutterBottom>
-                    {club.nome}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Descrição: {club.descricao || "Sem descrição"}
-                  </Typography>
-                </CardContent>
-                <CardActions sx={dynamicStyles.cardActions}>
-                  <Button variant="contained" sx={dynamicStyles.button}>
-                    Participar
-                  </Button>
-                </CardActions>
-              </Card>
+              <Grid item xs={12} sm={6} md={4} key={club.objectId}>
+                <Card sx={dynamicStyles.card}>
+                  <CardContent sx={dynamicStyles.cardContent}>
+                    <Typography variant="h6" gutterBottom>
+                      {club.nome}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Descrição: {club.descricao || "Sem descrição"}
+                    </Typography>
+                  </CardContent>
+                  <CardActions sx={dynamicStyles.cardActions}>
+                    <Button variant="contained" sx={dynamicStyles.button}>
+                      Participar
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
             ))}
-          </Box>
+          </Grid>
         )}
       </Box>
     </DashboardLayout>
