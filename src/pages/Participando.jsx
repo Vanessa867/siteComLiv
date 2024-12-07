@@ -122,7 +122,7 @@ const Participando = () => {
 
           <Button
             variant="outlined"
-            onClick={() => navigate("/createClub")}
+            onClick={() => navigate("/CriarClube")}
             sx={{
               borderColor: "#6A1B9A",
               color: "#6A1B9A",
