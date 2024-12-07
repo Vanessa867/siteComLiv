@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; 
+import { useNavigate, Link } from 'react-router-dom';
 import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
-import NavigationButtons from '../components/NavigationButtons';
+import logo from "../images/comliv.png";
+import { Divider } from "@mui/material";
+
 
 const Cadastrar = () => {
   const [nome, setNome] = useState('');
@@ -11,7 +13,7 @@ const Cadastrar = () => {
   const [mensagem, setMensagem] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,8 +40,7 @@ const Cadastrar = () => {
         setEmail('');
         setSenha('');
         setRepetirSenha('');
-        
-        // Redireciona para a página Home
+
         navigate('/HomeDepoisDoLogin');
       } else {
         setMensagem('Erro no cadastro. Tente novamente.');
@@ -53,22 +54,65 @@ const Cadastrar = () => {
   };
 
   return (
-    <div className='container'>
-      <Grid container style={{ height: '100vh' }}>
-        <Grid item xs={2} sm={4} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#9A358A', height: '80%' }}>
-            <Typography variant="h4" style={{ color: '#ffffff' }} gutterBottom>
-              Bem-vindo ao ComLiv, crie sua conta!
-            </Typography>
-          </Paper>
+    <Grid
+      container
+      sx={{
+        height: "100vh",
+        backgroundColor: "#F4F6F8",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Grid
+        item
+        xs={12}
+        md={10}
+        lg={8}
+        container
+        spacing={2}
+        sx={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          boxShadow: "0px 4px 10px rgba(0,0,0,0.2)",
+          borderRadius: "12px",
+          backgroundColor: "#ffffff",
+          padding: "20px",
+        }}
+      >
+        <Grid 
+        item 
+        xs={12} 
+        md={6} 
+        sx={{ textAlign: 'center',  }}>
+          <img
+            src={logo}
+            alt="Logo do Site"
+            style={{
+              height: "350px",
+              maxWidth: "100%",}}/>
         </Grid>
 
-        <Grid item xs={12} sm={8} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Paper style={{ padding: '100px', textAlign: 'center', backgroundColor: '#ffffff', height: '80%' }}>
-          <NavigationButtons />  
-            <Typography variant="h5" style={{ color: '#9A358A' }} gutterBottom>
-              Cadastre-se!
+        <Grid item xs={12} md={6}>
+          <Paper
+            elevation={0}
+            sx={{
+              padding: '20px',
+              borderRadius: '12px',
+              backgroundColor: 'transparent',
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: "bold",
+                marginBottom: "20px",
+                color: "#9A358A",
+                textAlign: "center"
+              }}
+            >
+              Bem-vindo ao ComLiv!
             </Typography>
+
             <form onSubmit={handleSubmit}>
               <TextField
                 label="Nome"
@@ -78,7 +122,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem' },
+                  sx: { height: "60px", fontSize: "1rem" },
                 }}
               />
               <TextField
@@ -90,7 +134,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem' },
+                  sx: { height: "60px", fontSize: "1rem" },
                 }}
               />
               <TextField
@@ -102,7 +146,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem' },
+                  sx: { height: "60px", fontSize: "1rem" },
                 }}
               />
               <TextField
@@ -114,7 +158,7 @@ const Cadastrar = () => {
                 fullWidth
                 margin="normal"
                 InputProps={{
-                  sx: { height: '60px', fontSize: '1rem' },
+                  sx: { height: "60px", fontSize: "1rem" },
                 }}
               />
               <Button
@@ -122,21 +166,68 @@ const Cadastrar = () => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                style={{ height: '60px', width: '600px', fontSize: '1rem' }}
+                sx={{
+                  height: "60px",
+                  fontSize: "1rem",
+                  backgroundColor: "#9A358A",
+                  "&:hover": {
+                    backgroundColor: "#7A2A6E",
+                  },
+                }}
                 disabled={loading}
               >
-                {loading ? 'Cadastrando...' : 'Cadastrar'}
+                {loading ? "Cadastrando..." : "Cadastrar"}
               </Button>
             </form>
-            {mensagem && <Typography color="error">{mensagem}</Typography>}
-            
-            <Typography variant="body2" style={{ marginTop: '20px' }}>
-              Já tem uma conta? <Link to="/login" style={{ color: '#9A358A', textDecoration: 'none' }}>Faça login!</Link>
-            </Typography>
+
+            {mensagem && (
+              <Typography color="error" sx={{ marginTop: "20px" }}>
+                {mensagem}
+              </Typography>
+            )}
+
+          <Typography
+            variant="body2"
+            sx={{ marginTop: "20px", marginBottom: "10px", textAlign: "center" }}
+          >
+            Já tem uma conta?{" "}
+            <Link
+              to="/login"
+              style={{
+                color: "#9A358A",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              Faça login!
+            </Link>
+          </Typography>
+
+          <Divider sx={{ marginY: "5px", backgroundColor: "#9A358A", opacity: 0.4 }} />
+
+          <Typography
+            variant="body2"
+            sx={{ marginTop: "5px", textAlign: "center" }}
+          >
+            Deseja voltar?{" "}
+            <Link
+              to="/"
+              style={{
+                color: "#9A358A",
+                textDecoration: "none",
+                fontWeight: "bold",
+                marginTop: "10px",
+                display: "inline-block",
+              }}
+            >
+              Clique aqui
+            </Link>
+          </Typography>
+
           </Paper>
         </Grid>
       </Grid>
-    </div>
+    </Grid>
   );
 };
 

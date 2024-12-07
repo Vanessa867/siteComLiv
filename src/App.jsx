@@ -30,7 +30,6 @@ const theme = createTheme({
   },
 });
 
-// Componente que renderiza o Header condicionalmente
 const AppContent = () => {
   const location = useLocation(); 
 
@@ -40,8 +39,8 @@ const AppContent = () => {
   
   return (
     <>
-       {/* O Header será exibido em todas as rotas, exceto em cadastrar e login */}
-       {location.pathname !== '/cadastrar' && location.pathname !== '/Login' && location.pathname !== '/Perfil' && location.pathname !== '/HomeDepoisDoLogin' && location.pathname !== '/Config' && <Header />}
+       
+       {location.pathname === '/' || location.pathname === '/sobre' ? <Header /> : null} 
       
       
       <Routes>
@@ -66,7 +65,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        <div className="app-container"> {/* Certifique-se de que o container tenha 100% de altura */}
+        <div className="app-container"> 
           <AppContent />
         </div>
       </Router>
