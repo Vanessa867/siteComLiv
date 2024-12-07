@@ -1,3 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #9A358A; 
+}
+
 .config-container {
     max-width: 700px;
     margin: 0 auto;
@@ -6,6 +13,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
+  
   
   .config-title {
     color: white;

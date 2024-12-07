@@ -19,8 +19,9 @@ const ConfigPage = () => {
     <DashboardLayout>
       <Box className="config-container">
         <Typography variant="h4" className="config-title">
-          
+          Configurações
         </Typography>
+        <br></br>
 
         <Accordion className="config-accordion">
           <AccordionSummary

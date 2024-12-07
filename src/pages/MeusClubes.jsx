@@ -53,7 +53,7 @@ const MeusClubes = () => {
   return (
     <DashboardLayout>
       <Box sx={{ padding: "20px" }}>
-        <Typography variant="h5" align="center" sx={{ marginBottom: "20px" }}>
+        <Typography variant="h5" align="center" sx={{ marginBottom: "20px", color: "#9A358A" }}>
           Meus Clubes
         </Typography>
 
