@@ -1,53 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { Box, TextField, InputAdornment, Typography, Button, Card, CardContent, CardActions, Grid } from "@mui/material";
+import {
+  Box,
+  TextField,
+  InputAdornment,
+  Typography,
+  Card,
+  CardContent,
+  CardActions,
+  Grid,
+  Link,
+  Button,
+  Modal,
+  Fade,
+  Backdrop,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../components/DashboardLayout";
+
+// Função para gerar cor hexadecimal aleatória
+const generateRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 
 const HomeDepoisDoLogin = () => {
   const [clubs, setClubs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedClub, setSelectedClub] = useState(null);
 
-  const dynamicStyles = {
-    searchBox: {
-      display: "flex",
-      alignItems: "center",
-      backgroundColor: "#f3eaf7",
-      borderRadius: "8px",
-      padding: "5px 15px",
-      marginBottom: "20px",
-      width: "100%",
-      maxWidth: "800px",
-      margin: "0 auto",
-    },
-    searchTextField: {
-      fontSize: "14px",
-      width: "100%",
-    },
-    card: {
-      borderRadius: "8px",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      transition: "transform 0.2s ease-in-out",
-      "&:hover": {
-        transform: "scale(1.05)",
-      },
-    },
-    cardContent: {
-      padding: "20px",
-    },
-    cardActions: {
-      display: "flex",
-      justifyContent: "flex-end",
-    },
-    button: {
-      backgroundColor: "#9A358A",
-      color: "white",
-      "&:hover": {
-        backgroundColor: "#5b1b99",
-      },
-    },
-  };
+  const navigate = useNavigate();
 
   // Fetching clubs from API
   useEffect(() => {
@@ -57,20 +49,20 @@ const HomeDepoisDoLogin = () => {
         const response = await fetch("https://parseapi.back4app.com/classes/Clubes", {
           method: "GET",
           headers: {
-            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM", 
-            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ", 
-            "Content-Type": "application/json"
-          }
+            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+            "Content-Type": "application/json",
+          },
         });
 
         if (response.ok) {
           const data = await response.json();
-          setClubs(data.results); // Assuming response contains 'results'
+          setClubs(data.results);
         } else {
           setError("Erro ao buscar clubes.");
         }
       } catch (error) {
-        console.error('Erro ao conectar com o servidor:', error);
+        console.error("Erro ao conectar com o servidor:", error);
         setError("Erro ao conectar com o servidor.");
       } finally {
         setLoading(false);
@@ -80,15 +72,36 @@ const HomeDepoisDoLogin = () => {
     fetchClubs();
   }, []);
 
-  // Filter clubs based on search term
   const filteredClubs = clubs.filter((club) =>
-    club.nome.toLowerCase().includes(searchTerm.toLowerCase()) // Adjust if API returns a different key
+    club.nome.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleOpenModal = (club) => {
+    setSelectedClub(club); // Armazenar os dados do clube selecionado
+    setOpenModal(true); // Abrir o modal
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false); // Fechar o modal
+    setSelectedClub(null); // Limpar os dados do clube
+  };
 
   return (
     <DashboardLayout>
       <Box sx={{ padding: "20px" }}>
-        <Box sx={dynamicStyles.searchBox}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "#f3eaf7",
+            borderRadius: "8px",
+            padding: "5px 15px",
+            marginBottom: "20px",
+            width: "100%",
+            maxWidth: "800px",
+            margin: "0 auto",
+          }}
+        >
           <TextField
             fullWidth
             placeholder="Buscar clubes"
@@ -104,33 +117,52 @@ const HomeDepoisDoLogin = () => {
               ),
               sx: { padding: "8px 0" },
             }}
-            sx={dynamicStyles.searchTextField}
           />
         </Box>
         <Typography variant="h5" style={{ marginBottom: "20px", textAlign: "center" }}>
           Clubes Disponíveis
         </Typography>
 
-        {/* Display loading or error message */}
         {loading ? (
-          <Typography variant="h6" align="center">Carregando clubes...</Typography>
+          <Typography variant="h6" align="center">
+            Carregando clubes...
+          </Typography>
         ) : error ? (
-          <Typography variant="h6" align="center" color="error">{error}</Typography>
+          <Typography variant="h6" align="center" color="error">
+            {error}
+          </Typography>
         ) : (
           <Grid container spacing={3}>
             {filteredClubs.map((club) => (
               <Grid item xs={12} sm={6} md={4} key={club.objectId}>
-                <Card sx={dynamicStyles.card}>
-                  <CardContent sx={dynamicStyles.cardContent}>
-                    <Typography variant="h6" gutterBottom>
+                <Card sx={{ maxWidth: 345, margin: "0 auto" }}>
+                  {/* Substituindo CardMedia por uma cor de fundo aleatória */}
+                  <Box
+                    sx={{
+                      height: 140,
+                      backgroundColor: generateRandomColor(),
+                      borderRadius: "8px 8px 0 0",
+                    }}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
                       {club.nome}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      Descrição: {club.descricao || "Sem descrição"}
+                    <Typography variant="body2" color="text.secondary">
+                      {club.descricao || "Sem descrição disponível"}
                     </Typography>
                   </CardContent>
-                  <CardActions sx={dynamicStyles.cardActions}>
-                    <Button variant="contained" sx={dynamicStyles.button}>
+                  <CardActions>
+                    <Link
+                      href="#"
+                      onClick={() => handleOpenModal(club)}
+                      underline="hover"
+                      color="primary"
+                      sx={{ fontSize: "0.875rem" }}
+                    >
+                      Ver Encontros
+                    </Link>
+                    <Button size="small" variant="contained" sx={{ backgroundColor: "#9A358A" }}>
                       Participar
                     </Button>
                   </CardActions>
@@ -139,6 +171,56 @@ const HomeDepoisDoLogin = () => {
             ))}
           </Grid>
         )}
+
+        {/* Modal para exibir detalhes dos encontros */}
+        <Modal
+          open={openModal}
+          onClose={handleCloseModal}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={openModal}>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: 400,
+                bgcolor: "background.paper",
+                borderRadius: 2,
+                boxShadow: 24,
+                p: 4,
+              }}
+            >
+              <Typography variant="h6" gutterBottom>
+                Encontros do Clube: {selectedClub?.nome}
+              </Typography>
+              {/* Aqui você pode exibir os encontros */}
+              <List>
+                {selectedClub?.encontros?.map((encontro, index) => (
+                  <ListItem key={index}>
+                    <ListItemText
+                      primary={encontro.nome}
+                      secondary={`Data: ${encontro.data} | Hora: ${encontro.hora}`}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+              <Button
+                onClick={handleCloseModal}
+                variant="contained"
+                color="secondary"
+                sx={{ marginTop: "16px" }}
+              >
+                Fechar
+              </Button>
+            </Box>
+          </Fade>
+        </Modal>
       </Box>
     </DashboardLayout>
   );
