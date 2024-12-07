@@ -196,9 +196,6 @@ const HomeDepoisDoLogin = () => {
                     >
                       Ver Encontros
                     </Link>
-                    <Button size="small" variant="contained" sx={{ backgroundColor: "#9A358A" }}>
-                      Participar
-                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
