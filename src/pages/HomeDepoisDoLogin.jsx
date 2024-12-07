@@ -38,10 +38,11 @@ const HomeDepoisDoLogin = () => {
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [selectedClub, setSelectedClub] = useState(null);
+  const [clubEncontros, setClubEncontros] = useState([]); // Para armazenar os encontros do clube
 
   const navigate = useNavigate();
 
-  // Fetching clubs from API
+  // Função para buscar clubes
   useEffect(() => {
     const fetchClubs = async () => {
       setLoading(true);
@@ -72,18 +73,51 @@ const HomeDepoisDoLogin = () => {
     fetchClubs();
   }, []);
 
+  // Função para buscar os encontros de um clube
+  const fetchEncontros = async (clubId) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`https://parseapi.back4app.com/classes/Encontros?where={"clubId":{"__type":"Pointer","className":"Clubes","objectId":"${clubId}"}}`, {
+        method: "GET",
+        headers: {
+          "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+          "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+          "Content-Type": "application/json"
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setClubEncontros(data.results);
+      } else {
+        setError("Erro ao buscar encontros.");
+      }
+    } catch (error) {
+      setError("Erro ao conectar com o servidor.");
+      console.error("Erro de conexão:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const filteredClubs = clubs.filter((club) =>
     club.nome.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleOpenModal = (club) => {
+  const handleOpenModal = async (club) => {
     setSelectedClub(club); // Armazenar os dados do clube selecionado
     setOpenModal(true); // Abrir o modal
+
+    // Buscar os encontros do clube
+    await fetchEncontros(club.objectId);
   };
 
   const handleCloseModal = () => {
     setOpenModal(false); // Fechar o modal
     setSelectedClub(null); // Limpar os dados do clube
+    setClubEncontros([]); // Limpar os encontros
   };
 
   return (
@@ -162,9 +196,6 @@ const HomeDepoisDoLogin = () => {
                     >
                       Ver Encontros
                     </Link>
-                    <Button size="small" variant="contained" sx={{ backgroundColor: "#9A358A" }}>
-                      Participar
-                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -200,22 +231,27 @@ const HomeDepoisDoLogin = () => {
                 Encontros do Clube: {selectedClub?.nome}
               </Typography>
               {/* Aqui você pode exibir os encontros */}
-              <List>
-                {selectedClub?.encontros?.map((encontro, index) => (
-                  <ListItem key={index}>
-                    <ListItemText
-                      primary={encontro.nome}
-                      secondary={`Data: ${encontro.data} | Hora: ${encontro.hora}`}
-                    />
-                  </ListItem>
-                ))}
-              </List>
-              <Button
-                onClick={handleCloseModal}
-                variant="contained"
-                color="secondary"
-                sx={{ marginTop: "16px" }}
-              >
+              {loading ? (
+                <Typography variant="body2" align="center">
+                  Carregando encontros...
+                </Typography>
+              ) : clubEncontros.length === 0 ? (
+                <Typography variant="body2" color="error" align="center">
+                  Nenhum encontro encontrado.
+                </Typography>
+              ) : (
+                <List>
+                  {clubEncontros.map((encontro, index) => (
+                    <ListItem key={index}>
+                      <ListItemText
+                        primary={encontro.nome}
+                        secondary={`Titulo: ${encontro.titulo || "titulo não disponível"} - Local: ${encontro.local || "Local não disponível"} - Data: ${encontro.data || "data não disponível"} - Descricao: ${encontro.descricao || "Descrição não disponível"}`}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+              <Button onClick={handleCloseModal} sx={{ marginTop: "20px" }} variant="contained">
                 Fechar
               </Button>
             </Box>
