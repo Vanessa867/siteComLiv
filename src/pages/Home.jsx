@@ -12,32 +12,42 @@ import imagens5 from '../images/imagem5.png';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
-
 const Home = () => {
   return (
     <div className="home">
       <Container maxWidth="lg" className="main-container">
-        <Box className="content-container">
-          <Box className="text-content">
+        {/* Seção Principal */}
+        <Box
+          className="content-container"
+          display="flex"
+          flexDirection={{ xs: 'column', md: 'row' }}
+          alignItems="center"
+        >
+          {/* Texto */}
+          <Box className="text-content" flex="1" pr={{ md: 4 }} mb={{ xs: 4, md: 0 }}>
             <Typography variant="h2" className="clubinar" gutterBottom>
               Descubra o Poder da Leitura em Comunidade!
             </Typography>
             <Typography variant="body1" className="description" paragraph>
               Entre no ComLiv e transforme sua experiência de leitura! Aqui, você pode criar e participar de clubes que conectam amantes de livros de todas as idades. Compartilhe suas histórias favoritas, troque ideias e descubra novas perspectivas com pessoas que também são apaixonadas pela literatura. Venha fazer parte dessa comunidade literária vibrante!
             </Typography>
-            <Button 
-            variant="contained" 
-            color="secondary" 
-            className="botão-club"
-            component={Link}
-            to="/Cadastrar"
+            <Button
+              variant="contained"
+              color="secondary"
+              className="botão-club"
+              component={Link}
+              to="/Cadastrar"
             >
               Clubinar
             </Button>
           </Box>
-          <img src={livro} alt="Livros" className="imagem-livro" />
+          {/* Imagem */}
+          <Box flex="1" display="flex" justifyContent="center">
+            <img src={livro} alt="Livros" className="imagem-livro" />
+          </Box>
         </Box>
 
+        {/* Restante do código */}
         <Box id="como-funciona" className="new-section">
           <Typography variant="h3" className="new-section-title" gutterBottom>
             Participando de um clube
@@ -126,10 +136,8 @@ const Home = () => {
             </Box>
           </Box>
         </Box>
-
-
       </Container>
-      <Footer /> 
+      <Footer />
     </div>
   );
 };
