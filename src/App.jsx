@@ -58,7 +58,7 @@ const AppContent = () => {
         <Route path="/Perfil" element={<Perfil />} /> 
        <Route path="/Participando" element={<Participando />} />
        <Route path="/MeusClubes" element={<MeusClubes />} />
-       <Route path='/GerenciarClube' element={<GerenciarClube />} />
+       <Route path="/gerenciar-clube/:clubId" element={<GerenciarClube />} />
       </Routes>
     </>
   );
