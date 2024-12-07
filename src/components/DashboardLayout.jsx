@@ -42,7 +42,7 @@ const DashboardLayout = ({ children }) => {
   const handleConfirmExit = () => {
     setOpenDialog(false);
     // Lógica para deslogar, como limpar tokens ou estado
-    navigate('/Home'); // Redireciona para a página inicial
+    navigate('/'); // Redireciona para a página inicial
   };
 
   return (
