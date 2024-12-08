@@ -136,6 +136,7 @@ const Participando = () => {
                 >
                   Encontre comunidades literárias incríveis e participe de
                   discussões legais e envolventes.
+                
                 </Typography>
                 <Button
                   variant="outlined"
@@ -173,7 +174,7 @@ const Participando = () => {
               <CardContent sx={{ textAlign: "center", padding: "30px" }}>
                 <ClubIcon
                   sx={{
-                    
+
                     fontSize: "3rem",
                     color: "#6A1B9A",
                     marginBottom: "20px",
