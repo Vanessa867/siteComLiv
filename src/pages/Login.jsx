@@ -42,7 +42,7 @@ const Login = ({ onLogin }) => {
 
       if (response.ok) {
         setMensagem("Login realizado com sucesso!");
-        localStorage.setItem("userSession", JSON.stringify(data));
+        localStorage.setItem("sessionToken", data.sessionToken);
         onLogin();
         navigate("/HomeDepoisDoLogin");
       } else {
@@ -60,7 +60,7 @@ const Login = ({ onLogin }) => {
       container
       sx={{
         height: "100vh",
-        backgroundColor: "#F4F6F8",
+        backgroundColor: "#F3E5F5",
         alignItems: "center",
         justifyContent: "center",
       }}
@@ -85,8 +85,7 @@ const Login = ({ onLogin }) => {
             alignItems: "center",
             justifyContent: "center",
             padding: "20px",
-            marginRight: "50px"}}>
-              
+            marginRight: "50px" }}>
           <img
             src={logo}
             alt="Logo do Site"
@@ -112,7 +111,7 @@ const Login = ({ onLogin }) => {
             sx={{
               fontWeight: "bold",
               marginBottom: "10px",
-              color: "#9A358A",
+              color: "#6A1B9A",
             }}
           >
             Bem-vindo de volta!
@@ -151,7 +150,7 @@ const Login = ({ onLogin }) => {
               fullWidth
               sx={{
                 height: "50px",
-                backgroundColor: "#9A358A",
+                backgroundColor: "#6A1B9A",
                 "&:hover": {
                   backgroundColor: "#7A2A6E",
                 },
@@ -163,50 +162,62 @@ const Login = ({ onLogin }) => {
           </form>
 
           {mensagem && (
-            <Typography color="error" sx={{ marginTop: "20px" }}>
+            <Typography
+              sx={{
+                marginTop: "20px",
+                textAlign: "center",
+                color: mensagem.includes("sucesso") ? "#2E7D32" : "#D32F2F",
+                fontWeight: "bold",
+              }}
+            >
               {mensagem}
             </Typography>
           )}
 
-        <Typography
-          variant="body2"
-          sx={{ marginTop: "20px", marginBottom:"5px", textAlign: "center" }}>
-          Não tem uma conta?{" "}
-          <Link
-            to="/cadastrar"
-            style={{
-              color: "#9A358A",
-              textDecoration: "none",
-              fontWeight: "bold",
-            }}>
-            Cadastre-se
-          </Link>
-        </Typography>
+          <Typography
+            variant="body2"
+            sx={{ marginTop: "20px", marginBottom: "5px", textAlign: "center" }}
+          >
+            Não tem uma conta?{" "}
+            <Link
+              to="/cadastrar"
+              style={{
+                color: "#6A1B9A",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              Cadastre-se
+            </Link>
+          </Typography>
 
-        <Divider
-        sx={{
-          marginY: "5px", 
-          width: "100%", 
-          height: "1px", 
-          backgroundColor: "#9A358A", 
-          opacity: 0.4, 
-        }}/>
+          <Divider
+            sx={{
+              marginY: "5px",
+              width: "100%",
+              height: "1px",
+              backgroundColor: "#6A1B9A",
+              opacity: 0.4,
+            }}
+          />
 
-        <Typography
-          variant="body2"
-          sx={{ marginTop: "5px", textAlign: "center" }} >
-          Deseja voltar?{" "}
-          <Link
-            to="/"
-            style={{
-              color: "#9A358A",
-              textDecoration: "none",
-              fontWeight: "bold",
-            }} >
-            Clique aqui
-          </Link>
-        </Typography>
-
+          <Typography
+            variant="body2"
+            sx={{ marginTop: "5px", textAlign: "center" }}
+          >
+            Deseja voltar?{" "}
+            <Button
+              onClick={() => navigate("/")}
+              sx={{
+                color: "#6A1B9A",
+                textDecoration: "none",
+                fontWeight: "bold",
+                textTransform: "none",
+              }}
+            >
+              Clique aqui
+            </Button>
+          </Typography>
         </Grid>
       </Paper>
     </Grid>
