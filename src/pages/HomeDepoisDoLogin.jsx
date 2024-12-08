@@ -73,37 +73,65 @@ const HomeDepoisDoLogin = () => {
     fetchClubs();
   }, []);
     //função para adicionar ...
-  const handleParticipar = async (clubId) => {
-    const token = localStorage.getItem("sessionToken");
-  
-    if (!token) {
-      console.error("Usuário não autenticado. Faça login primeiro.");
-      return;
-    }
-  
-    try {
-      const response = await fetch("https://parseapi.back4app.com/classes/_User/me", {
-        method: "PUT",
-        headers: {
-          "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
-          "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
-          "X-Parse-Session-Token": token, // Usa o token salvo
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ clubId }),
-      });
-  
-      if (response.ok) {
-        console.log("Participação bem-sucedida!");
-      } else {
-        console.error("Erro ao participar do clube:", response.status);
+    const handleParticipar = async (clubId) => {
+      const token = localStorage.getItem("sessionToken");
+    
+      if (!token) {
+        alert("Usuário não autenticado. Faça login primeiro.");
+        return;
       }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
-    }
-  };
-  
+    
+      try {
+        // Primeiro, obtenha os dados atuais do usuário
+        const userResponse = await fetch("https://parseapi.back4app.com/classes/_User/me", {
+          method: "GET",
+          headers: {
+            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+            "X-Parse-Session-Token": token,
+          },
+        });
+    
+        if (!userResponse.ok) {
+          console.error("Erro ao buscar dados do usuário:", userResponse.status);
+          return;
+        }
+    
+        const userData = await userResponse.json();
+        const clubesAtuais = userData.clubesparticipando || []; // Use os clubes atuais ou um array vazio
+    
+        // Adicione o novo clube ao array, se ainda não estiver nele
+        if (!clubesAtuais.includes(clubId)) {
+          clubesAtuais.push(clubId);
+    
+          // Atualize o array no Back4App
+          const response = await fetch("https://parseapi.back4app.com/classes/_User/me", {
+            method: "PUT",
+            headers: {
+              "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+              "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+              "X-Parse-Session-Token": token,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ clubesparticipando: clubesAtuais }), // Atualize o campo
+          });
+    
+          if (response.ok) {
+            alert("Você agora está participando do clube!");
+          } else {
+            console.error("Erro ao atualizar clubes:", response.status);
+          }
+        } else {
+          alert("Você já está participando desse clube!");
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Ocorreu um erro ao tentar participar do clube. Tente novamente mais tarde.");
+      }
+    };
 
+    
+    
   // Função para buscar os encontros de um clube
   const fetchEncontros = async (clubId) => {
     setLoading(true);

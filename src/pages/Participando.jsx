@@ -1,9 +1,47 @@
-import React from "react";
-import { Box, Typography, Divider, Button, Paper } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Typography, Divider, Button, Paper, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Participando = () => {
   const navigate = useNavigate();
+  const [clubesParticipando, setClubesParticipando] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchClubesParticipando = async () => {
+      const token = localStorage.getItem("sessionToken");
+
+      if (!token) {
+        console.error("Usuário não autenticado. Faça login primeiro.");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch("https://parseapi.back4app.com/classes/_User/me", {
+          method: "GET",
+          headers: {
+            "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+            "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+            "X-Parse-Session-Token": token,
+          },
+        });
+
+        if (response.ok) {
+          const userData = await response.json();
+          setClubesParticipando(userData.clubesparticipando || []);
+        } else {
+          console.error("Erro ao buscar clubes:", response.status);
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClubesParticipando();
+  }, []);
 
   return (
     <Box
@@ -21,8 +59,8 @@ const Participando = () => {
       {/* Botão de navegação no topo dentro do fluxo */}
       <Box
         sx={{
-          alignSelf: "flex-start", 
-          marginBottom: "50px",   
+          alignSelf: "flex-start",
+          marginBottom: "50px",
         }}
       >
         <Button
@@ -64,80 +102,122 @@ const Participando = () => {
       />
 
       {/* Conteúdo Principal */}
-      <Paper
-        elevation={3}
-        sx={{
-          backgroundColor: "#FFFFFF",
-          borderRadius: "12px",
-          padding: "30px",
-          maxWidth: "600px",
-          textAlign: "center",
-          color: "#6A1B9A",
-          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <Typography
-          variant="body1"
+      {loading ? (
+        <CircularProgress sx={{ color: "#6A1B9A" }} />
+      ) : clubesParticipando.length > 0 ? (
+        <Paper
+          elevation={3}
           sx={{
-            fontSize: "18px",
-            marginBottom: "15px",
+            backgroundColor: "#FFFFFF",
+            borderRadius: "12px",
+            padding: "30px",
+            maxWidth: "600px",
+            textAlign: "center",
+            color: "#6A1B9A",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
           }}
         >
-          Ainda não há clubes na sua lista.
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "18px",
-          }}
-        >
-          Participe de um agora ou crie seu primeiro clube!
-        </Typography>
-
-        {/* Botões */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px", // Espaçamento entre os botões
-            marginTop: "20px",
-          }}
-        >
-          <Button
-            variant="outlined"
-            onClick={() => navigate("/HomeDepoisDoLogin")}
+          <Typography
+            variant="body1"
             sx={{
-              borderColor: "#6A1B9A",
-              color: "#6A1B9A",
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                backgroundColor: "#F3E5F5",
-                borderColor: "#8E24AA",
-              },
+              fontSize: "18px",
+              marginBottom: "15px",
             }}
           >
-            Explorar Clubes
-          </Button>
-
-          <Button
-            variant="outlined"
-            onClick={() => navigate("/CriarClube")}
+            Aqui estão os clubes que você está participando:
+          </Typography>
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            {clubesParticipando.map((clubeId) => (
+              <li key={clubeId} style={{ marginBottom: "10px" }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Clube ID: {clubeId}
+                </Typography>
+              </li>
+            ))}
+          </ul>
+        </Paper>
+      ) : (
+        <Paper
+          elevation={3}
+          sx={{
+            backgroundColor: "#FFFFFF",
+            borderRadius: "12px",
+            padding: "30px",
+            maxWidth: "600px",
+            textAlign: "center",
+            color: "#6A1B9A",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <Typography
+            variant="body1"
             sx={{
-              borderColor: "#6A1B9A",
-              color: "#6A1B9A",
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                backgroundColor: "#F3E5F5",
-                borderColor: "#8E24AA",
-              },
+              fontSize: "18px",
+              marginBottom: "15px",
             }}
           >
-            Criar Clube
-          </Button>
-        </Box>
-      </Paper>
+            Ainda não há clubes na sua lista.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "18px",
+            }}
+          >
+            Participe de um agora ou crie seu primeiro clube!
+          </Typography>
+
+          {/* Botões */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px", // Espaçamento entre os botões
+              marginTop: "20px",
+            }}
+          >
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/HomeDepoisDoLogin")}
+              sx={{
+                borderColor: "#6A1B9A",
+                color: "#6A1B9A",
+                textTransform: "none",
+                fontWeight: "bold",
+                "&:hover": {
+                  backgroundColor: "#F3E5F5",
+                  borderColor: "#8E24AA",
+                },
+              }}
+            >
+              Explorar Clubes
+            </Button>
+
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/CriarClube")}
+              sx={{
+                borderColor: "#6A1B9A",
+                color: "#6A1B9A",
+                textTransform: "none",
+                fontWeight: "bold",
+                "&:hover": {
+                  backgroundColor: "#F3E5F5",
+                  borderColor: "#8E24AA",
+                },
+              }}
+            >
+              Criar Clube
+            </Button>
+          </Box>
+        </Paper>
+      )}
     </Box>
   );
 };
