@@ -16,14 +16,12 @@ const Home = () => {
   return (
     <div className="home">
       <Container maxWidth="lg" className="main-container">
-        {/* Seção Principal */}
         <Box
           className="content-container"
           display="flex"
           flexDirection={{ xs: 'column', md: 'row' }}
           alignItems="center"
         >
-          {/* Texto */}
           <Box className="text-content" flex="1" pr={{ md: 4 }} mb={{ xs: 4, md: 0 }}>
             <Typography variant="h2" className="clubinar" gutterBottom>
               Descubra o Poder da Leitura em Comunidade!
@@ -41,13 +39,11 @@ const Home = () => {
               Clubinar
             </Button>
           </Box>
-          {/* Imagem */}
           <Box flex="1" display="flex" justifyContent="center">
             <img src={livro} alt="Livros" className="imagem-livro" />
           </Box>
         </Box>
 
-        {/* Restante do código */}
         <Box id="como-funciona" className="new-section">
           <Typography variant="h3" className="new-section-title" gutterBottom>
             Participando de um clube
