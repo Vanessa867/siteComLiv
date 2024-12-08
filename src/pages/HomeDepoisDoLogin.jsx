@@ -72,42 +72,37 @@ const HomeDepoisDoLogin = () => {
 
     fetchClubs();
   }, []);
-
-  // Função para adicionar um clube ao usuário
+    //função para adicionar ...
   const handleParticipar = async (clubId) => {
+    const token = localStorage.getItem("sessionToken");
+  
+    if (!token) {
+      console.error("Usuário não autenticado. Faça login primeiro.");
+      return;
+    }
+  
     try {
       const response = await fetch("https://parseapi.back4app.com/classes/_User/me", {
         method: "PUT",
         headers: {
           "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
           "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
-          "X-Parse-Session-Token": localStorage.getItem("sessionToken"), // Certifique-se de que o token está armazenado
+          "X-Parse-Session-Token": token, // Usa o token salvo
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          clubesParticipando: {
-            __op: "AddRelation",
-            objects: [
-              {
-                __type: "Pointer",
-                className: "Clubes",
-                objectId: clubId,
-              },
-            ],
-          },
-        }),
+        body: JSON.stringify({ clubId }),
       });
-
+  
       if (response.ok) {
-        alert("Você agora está participando deste clube!");
+        console.log("Participação bem-sucedida!");
       } else {
-        alert("Erro ao participar do clube.");
+        console.error("Erro ao participar do clube:", response.status);
       }
     } catch (error) {
-      console.error("Erro ao adicionar clube ao usuário:", error);
-      alert("Erro ao conectar com o servidor.");
+      console.error("Erro na requisição:", error);
     }
   };
+  
 
   // Função para buscar os encontros de um clube
   const fetchEncontros = async (clubId) => {
