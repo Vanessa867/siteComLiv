@@ -73,6 +73,42 @@ const HomeDepoisDoLogin = () => {
     fetchClubs();
   }, []);
 
+  // Função para adicionar um clube ao usuário
+  const handleParticipar = async (clubId) => {
+    try {
+      const response = await fetch("https://parseapi.back4app.com/classes/_User/me", {
+        method: "PUT",
+        headers: {
+          "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM",
+          "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ",
+          "X-Parse-Session-Token": localStorage.getItem("sessionToken"), // Certifique-se de que o token está armazenado
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clubesParticipando: {
+            __op: "AddRelation",
+            objects: [
+              {
+                __type: "Pointer",
+                className: "Clubes",
+                objectId: clubId,
+              },
+            ],
+          },
+        }),
+      });
+
+      if (response.ok) {
+        alert("Você agora está participando deste clube!");
+      } else {
+        alert("Erro ao participar do clube.");
+      }
+    } catch (error) {
+      console.error("Erro ao adicionar clube ao usuário:", error);
+      alert("Erro ao conectar com o servidor.");
+    }
+  };
+
   // Função para buscar os encontros de um clube
   const fetchEncontros = async (clubId) => {
     setLoading(true);
@@ -123,146 +159,55 @@ const HomeDepoisDoLogin = () => {
   return (
     <DashboardLayout>
       <Box sx={{ padding: "20px" }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#f3eaf7",
-            borderRadius: "8px",
-            padding: "5px 15px",
-            marginBottom: "20px",
-            width: "100%",
-            maxWidth: "800px",
-            margin: "0 auto",
-          }}
-        >
-          <TextField
-            fullWidth
-            placeholder="Buscar clubes"
-            variant="standard"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            InputProps={{
-              disableUnderline: true,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon sx={{ color: "#9A358A" }} />
-                </InputAdornment>
-              ),
-              sx: { padding: "8px 0" },
-            }}
-          />
-        </Box>
-        <Typography variant="h5" style={{ marginBottom: "20px", textAlign: "center" }}>
-          Clubes Disponíveis
-        </Typography>
-
-        {loading ? (
-          <Typography variant="h6" align="center">
-            Carregando clubes...
-          </Typography>
-        ) : error ? (
-          <Typography variant="h6" align="center" color="error">
-            {error}
-          </Typography>
-        ) : (
-          <Grid container spacing={3}>
-            {filteredClubs.map((club) => (
-              <Grid item xs={12} sm={6} md={4} key={club.objectId}>
-                <Card sx={{ maxWidth: 345, margin: "0 auto" }}>
-                  {/* Substituindo CardMedia por uma cor de fundo aleatória */}
-                  <Box
-                    sx={{
-                      height: 140,
-                      backgroundColor: generateRandomColor(),
-                      borderRadius: "8px 8px 0 0",
-                    }}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {club.nome}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {club.descricao || "Sem descrição disponível"}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                  <Button size="small" variant="contained" sx={{ backgroundColor: "#9A358A" }}>
-  Participar
-</Button>
-                    <Link
-                      href="#"
-                      onClick={() => handleOpenModal(club)}
-                      underline="hover"
-                      color="primary"
-                      sx={{ fontSize: "0.875rem" }}
-                    >
-                      Ver Encontros
-                    </Link>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        )}
-
-        {/* Modal para exibir detalhes dos encontros */}
-        <Modal
-          open={openModal}
-          onClose={handleCloseModal}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={openModal}>
-            <Box
-              sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 400,
-                bgcolor: "background.paper",
-                borderRadius: 2,
-                boxShadow: 24,
-                p: 4,
-              }}
-            >
-              <Typography variant="h6" gutterBottom>
-                Encontros do Clube: {selectedClub?.nome}
-              </Typography>
-              {/* Aqui você pode exibir os encontros */}
-              {loading ? (
-                <Typography variant="body2" align="center">
-                  Carregando encontros...
-                </Typography>
-              ) : clubEncontros.length === 0 ? (
-                <Typography variant="body2" color="error" align="center">
-                  Nenhum encontro encontrado.
-                </Typography>
-              ) : (
-                <List>
-                  {clubEncontros.map((encontro, index) => (
-                    <ListItem key={index}>
-                      <ListItemText
-                        primary={encontro.nome}
-                        secondary={`Titulo: ${encontro.titulo || "titulo não disponível"} - Local: ${encontro.local || "Local não disponível"} - Data: ${encontro.data || "data não disponível"} - Descricao: ${encontro.descricao || "Descrição não disponível"}`}
-                      />
-                    </ListItem>
-                  ))}
-                </List>
-              )}
-              <Button onClick={handleCloseModal} sx={{ marginTop: "20px" }} variant="contained">
-                Fechar
-              </Button>
-            </Box>
-          </Fade>
-        </Modal>
+        {/* ...resto do código */}
+        <Grid container spacing={3}>
+          {filteredClubs.map((club) => (
+            <Grid item xs={12} sm={6} md={4} key={club.objectId}>
+              <Card sx={{ maxWidth: 345, margin: "0 auto" }}>
+                <Box
+                  sx={{
+                    height: 140,
+                    backgroundColor: generateRandomColor(),
+                    borderRadius: "8px 8px 0 0",
+                  }}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {club.nome}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {club.descricao || "Sem descrição disponível"}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    sx={{ backgroundColor: "#9A358A" }}
+                    onClick={() => handleParticipar(club.objectId)}
+                  >
+                    Participar
+                  </Button>
+                  <Link
+                    href="#"
+                    onClick={() => handleOpenModal(club)}
+                    underline="hover"
+                    color="primary"
+                    sx={{ fontSize: "0.875rem" }}
+                  >
+                    Ver Encontros
+                  </Link>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        {/* Modal de encontros */}
+        {/* ...resto do código */}
       </Box>
     </DashboardLayout>
   );
 };
 
 export default HomeDepoisDoLogin;
+
