@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Grid, Button, Card, CardContent, CardActions, TextField, CircularProgress, Link } from "@mui/material";
+import { Box, Typography, Grid, Button, Card, CardContent, CardActions, TextField, CircularProgress } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 import DashboardLayout from "../components/DashboardLayout"; // Importando o layout do dashboard
 
 const MeusClubes = () => {
@@ -8,6 +9,8 @@ const MeusClubes = () => {
   const [loading, setLoading] = useState(false); // Estado de carregamento
   const [error, setError] = useState(null); // Estado para erro
   const [validEmail, setValidEmail] = useState(true); // Validação do email
+
+  const navigate = useNavigate(); // Hook do react-router-dom para navegação
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -73,6 +76,10 @@ const MeusClubes = () => {
     }
   };
 
+  const handleNavigateToEncontros = (clubId) => {
+    navigate(`/Encontros/${clubId}`); // Navega para a página de gerenciamento do clube
+  };
+
   return (
     <DashboardLayout>
       <Box sx={{ padding: "20px" }}>
@@ -124,10 +131,10 @@ const MeusClubes = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      {/* Link para a página de gerenciamento do clube */}
-                      <Link to={`/GerenciarClube/${club.objectId}`} style={{ textDecoration: "none" }}>
-                        <Button variant="contained">Gerenciar</Button>
-                      </Link>
+                      {/* Botão de gerenciamento do clube */}
+                      <Button variant="contained" onClick={() => handleNavigateToEncontros(club.objectId)}>
+                        Gerenciar
+                      </Button>
                       {/* Botão de exclusão */}
                       <Button variant="contained" color="error" onClick={() => handleDeleteClube(club.objectId)}>
                         Apagar
