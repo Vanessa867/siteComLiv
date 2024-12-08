@@ -187,6 +187,9 @@ const HomeDepoisDoLogin = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
+                  <Button size="small" variant="contained" sx={{ backgroundColor: "#9A358A" }}>
+  Participar
+</Button>
                     <Link
                       href="#"
                       onClick={() => handleOpenModal(club)}
