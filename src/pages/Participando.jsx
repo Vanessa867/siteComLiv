@@ -30,8 +30,14 @@ const Participando = () => {
         if (response.ok) {
           const userData = await response.json();
 
+          // Verifique a estrutura completa dos dados
+          console.log("Dados do usuário:", userData);
+
           // Expandindo a relação 'clubesparticipando'
           const clubesIds = userData.clubesparticipando ? userData.clubesparticipando.map((relation) => relation.objectId) : [];
+
+          // Verifique a estrutura da relação
+          console.log("Clubes Participando (IDs):", clubesIds);
 
           setClubesParticipando(clubesIds);
         } else {
@@ -212,19 +218,4 @@ const Participando = () => {
                 textTransform: "none",
                 fontWeight: "bold",
                 "&:hover": {
-                  backgroundColor: "#F3E5F5",
-                  borderColor: "#8E24AA",
-                },
-              }}
-            >
-              Criar Clube
-            </Button>
-          </Box>
-        </Paper>
-      )}
-    </Box>
-  );
-};
-
-export default Participando;
-
+                  backgroundColor: "#F3
