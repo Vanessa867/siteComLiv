@@ -1,6 +1,17 @@
 import React from "react";
-import { Box, Typography, Divider, Button, Paper } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Divider,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+} from "@mui/material";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import BookIcon from "@mui/icons-material/Book";
+import ClubIcon from "@mui/icons-material/GroupAdd";
 
 const Participando = () => {
   const navigate = useNavigate();
@@ -18,13 +29,7 @@ const Participando = () => {
         color: "#6A1B9A",
       }}
     >
-      {/* Botão de navegação no topo dentro do fluxo */}
-      <Box
-        sx={{
-          alignSelf: "flex-start", 
-          marginBottom: "50px",   
-        }}
-      >
+      <Box sx={{ alignSelf: "flex-start", marginBottom: "5px" }}>
         <Button
           variant="contained"
           onClick={() => navigate("/HomeDepoisDoLogin")}
@@ -33,111 +38,189 @@ const Participando = () => {
             color: "#6A1B9A",
             textTransform: "none",
             fontWeight: "bold",
+            borderRadius: "20px",
             "&:hover": {
               backgroundColor: "#8E24AA",
             },
           }}
         >
-          VOLTAR
+          Voltar
         </Button>
       </Box>
 
-      {/* Título da Página */}
-      <Typography
-        variant="h4"
-        sx={{
-          marginBottom: "20px",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
       >
-        Clubes que estou participando
-      </Typography>
+        <Typography
+          variant="h3"
+          sx={{
+            marginBottom: "30px",
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "#6A1B9A",
+            fontSize: "2.5rem",
+          }}
+        >
+          Clubes que estou participando
+        </Typography>
+      </motion.div>
 
       <Divider
         sx={{
           backgroundColor: "#6A1B9A",
           width: "100%",
           maxWidth: "600px",
-          marginBottom: "30px",
+          marginBottom: "40px",
+          height: "2px",
         }}
       />
 
-      {/* Conteúdo Principal */}
-      <Paper
-        elevation={3}
-        sx={{
-          backgroundColor: "#FFFFFF",
-          borderRadius: "12px",
-          padding: "30px",
-          maxWidth: "600px",
-          textAlign: "center",
-          color: "#6A1B9A",
-          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-        }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
       >
         <Typography
-          variant="body1"
+          variant="h6"
           sx={{
-            fontSize: "18px",
-            marginBottom: "15px",
+            fontSize: "1.2rem",
+            color: "#6A1B9A",
+            textAlign: "center",
+            marginBottom: "40px",
           }}
         >
-          Ainda não há clubes na sua lista.
+          Descubra novos clubes de leitura ou crie o seu próprio. Compartilhe
+          experiências e conecte-se com outros apaixonados por livros!
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "18px",
-          }}
-        >
-          Participe de um agora ou crie seu primeiro clube!
-        </Typography>
+      </motion.div>
 
-        {/* Botões */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px", // Espaçamento entre os botões
-            marginTop: "20px",
-          }}
-        >
-          <Button
-            variant="outlined"
-            onClick={() => navigate("/HomeDepoisDoLogin")}
-            sx={{
-              borderColor: "#6A1B9A",
-              color: "#6A1B9A",
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                backgroundColor: "#F3E5F5",
-                borderColor: "#8E24AA",
-              },
-            }}
+      <Grid container spacing={3} sx={{ justifyContent: "center" }}>
+        <Grid item xs={12} sm={6} md={4}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
-            Explorar Clubes
-          </Button>
+            <Card
+              sx={{
+                backgroundColor: "#FFFFFF",
+                borderRadius: "10px",
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <CardContent sx={{ textAlign: "center", padding: "30px" }}>
+                <BookIcon
+                  sx={{
+                    fontSize: "3rem",
+                    color: "#6A1B9A",
+                    marginBottom: "20px",
+                  }}
+                />
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: "bold",
+                    marginBottom: "10px",
+                    color: "#6A1B9A",
+                  }}
+                >
+                  Explore os clubes do ComLiv
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#6A1B9A",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Encontre comunidades literárias incríveis e participe de
+                  discussões legais e envolventes.
+                </Typography>
+                <Button
+                  variant="outlined"
+                  onClick={() => navigate("/HomeDepoisDoLogin")}
+                  sx={{
+                    borderColor: "#6A1B9A",
+                    color: "#6A1B9A",
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    "&:hover": {
+                      backgroundColor: "#F3E5F5",
+                      borderColor: "#8E24AA",
+                    },
+                  }}
+                >
+                  Explorar Clubes
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </Grid>
 
-          <Button
-            variant="outlined"
-            onClick={() => navigate("/CriarClube")}
-            sx={{
-              borderColor: "#6A1B9A",
-              color: "#6A1B9A",
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                backgroundColor: "#F3E5F5",
-                borderColor: "#8E24AA",
-              },
-            }}
+        <Grid item xs={12} sm={6} md={4}>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           >
-            Criar Clube
-          </Button>
-        </Box>
-      </Paper>
+            <Card
+              sx={{
+                backgroundColor: "#FFFFFF",
+                borderRadius: "10px",
+                boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <CardContent sx={{ textAlign: "center", padding: "30px" }}>
+                <ClubIcon
+                  sx={{
+                    fontSize: "3rem",
+                    color: "#6A1B9A",
+                    marginBottom: "20px",
+                  }}
+                />
+                <Typography
+                  variant="h5"
+                  sx={{
+                    fontWeight: "bold",
+                    marginBottom: "10px",
+                    color: "#6A1B9A",
+                  }}
+                >
+                  Deseja criar um clube agora?
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#6A1B9A",
+                    marginBottom: "20px",
+                  }}
+                >
+                  Construa seu próprio espaço para troca de ideias sobre livros
+                  com amigos e leitores.
+                </Typography>
+                <Button
+                  variant="outlined"
+                  onClick={() => navigate("/CriarClube")}
+                  sx={{
+                    borderColor: "#6A1B9A",
+                    color: "#6A1B9A",
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    "&:hover": {
+                      backgroundColor: "#F3E5F5",
+                      borderColor: "#8E24AA",
+                    },
+                  }}
+                >
+                  Criar Clube
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </Grid>
+      </Grid>
+      <br />
+      <br />
     </Box>
   );
 };
