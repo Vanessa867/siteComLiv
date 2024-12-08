@@ -173,6 +173,7 @@ const Participando = () => {
               <CardContent sx={{ textAlign: "center", padding: "30px" }}>
                 <ClubIcon
                   sx={{
+                    
                     fontSize: "3rem",
                     color: "#6A1B9A",
                     marginBottom: "20px",
