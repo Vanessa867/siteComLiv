@@ -7,14 +7,13 @@ import Cadastrar from './pages/Cadastrar';
 import Login from './pages/Login';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import HomeDepoisDoLogin from './pages/HomeDepoisDoLogin';
+import Participando from './pages/Participando'; 
 import Config from './pages/Config';
 import Perfil from './pages/Perfil';
 import CriarClube from './pages/CriarClube';
 import '../src/App.css';
 import MeusClubes from './pages/MeusClubes';
 import Encontros from './pages/Encontros';
-
-
 
 const theme = createTheme({
   palette: {
@@ -56,6 +55,8 @@ const AppContent = () => {
         <Route path="/Perfil" element={<Perfil />} /> 
        <Route path="/MeusClubes" element={<MeusClubes />} />
        <Route path="/Encontros/:clubId" element={<Encontros />} />
+       <Route path="/Participando" element={<Participando />} />
+       
       </Routes>
     </>
   );
