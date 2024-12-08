@@ -29,7 +29,11 @@ const Participando = () => {
 
         if (response.ok) {
           const userData = await response.json();
-          setClubesParticipando(userData.clubesparticipando || []);
+
+          // Expandindo a relação 'clubesparticipando'
+          const clubesIds = userData.clubesparticipando ? userData.clubesparticipando.map((relation) => relation.objectId) : [];
+
+          setClubesParticipando(clubesIds);
         } else {
           console.error("Erro ao buscar clubes:", response.status);
         }
@@ -41,7 +45,7 @@ const Participando = () => {
     };
 
     fetchClubesParticipando();
-  }, []);
+  }, []); // Dependências vazias, executa apenas uma vez após o primeiro render
 
   return (
     <Box
@@ -223,3 +227,4 @@ const Participando = () => {
 };
 
 export default Participando;
+
