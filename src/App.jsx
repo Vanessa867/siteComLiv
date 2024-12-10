@@ -15,6 +15,7 @@ import '../src/App.css';
 import MeusClubes from './pages/MeusClubes';
 import Encontros from './pages/Encontros';
 
+
 const theme = createTheme({
   palette: {
     primary: {

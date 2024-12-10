@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Grid, Paper, TextField, Button, Typography } from '@mui/material';
+import { Grid, Paper, TextField, Button, Typography, Divider } from '@mui/material';
 import logo from "../images/comliv.png";
-import { Divider } from "@mui/material";
-
 
 const Cadastrar = () => {
   const [nome, setNome] = useState('');
@@ -20,15 +18,18 @@ const Cadastrar = () => {
     setLoading(true);
     setMensagem('');
 
-    const userData = { username: nome, email: email, password: senha };
+    if (senha !== repetirSenha) {
+      setMensagem('As senhas não coincidem.');
+      setLoading(false);
+      return;
+    }
+
+    const userData = { username: nome, email, password: senha };
 
     try {
-      const response = await fetch('https://parseapi.back4app.com/users', {
+      const response = await fetch("http://localhost:8080/api/ComLiv/users/novoUsuario",{
         method: 'POST',
         headers: {
-          'X-Parse-Application-Id': '17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM',
-          'X-Parse-REST-API-Key': '2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ',
-          'X-Parse-Revocable-Session': '1',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userData),
@@ -40,7 +41,6 @@ const Cadastrar = () => {
         setEmail('');
         setSenha('');
         setRepetirSenha('');
-
         navigate('/HomeDepoisDoLogin');
       } else {
         setMensagem('Erro no cadastro. Tente novamente.');

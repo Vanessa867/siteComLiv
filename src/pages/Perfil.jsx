@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Paper, TextField, Button, Typography } from '@mui/material'; // Importando os componentes do MUI
-import DashboardLayout from '../components/DashboardLayout'; // Importando o DashboardLayout
+import { Paper, TextField, Button, Typography } from '@mui/material'; 
+import DashboardLayout from '../components/DashboardLayout'; 
 import '../Styles/Perfil.css';
 
-// Definindo as credenciais do Back4App
-const BACK4APP_URL = 'https://parseapi.back4app.com/classes/Perfil'; // URL da classe "Perfil"
+
+const BACK4APP_URL = 'https://parseapi.back4app.com/classes/Perfil'; 
 const HEADERS = {
-  "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM", // Substitua pelo seu App ID do Back4App
-  "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ", // Substitua pela sua REST API Key
+  "X-Parse-Application-Id": "17Ffa9YqBaDzWsibw2D9eq7hTbjx5F8ibfPC2atM", 
+  "X-Parse-REST-API-Key": "2WBj1Fla9r4jFGw9V0XSfq2h4xvw8AbTwr20bpJQ", 
   "Content-Type": "application/json"
 };
 
@@ -18,12 +18,12 @@ const EditarLogin = () => {
   const [name, setName] = useState('');
   const [telefone, setTelefone] = useState('');
   const [error, setError] = useState(null);
-  const [isEditing, setIsEditing] = useState(false); // Estado para saber se o usuário está editando
-  const [userId, setUserId] = useState(null); // Armazenar o objectId do perfil
-  const navigate = useNavigate(); // Criando o hook de navegação
+  const [isEditing, setIsEditing] = useState(false); 
+  const [userId, setUserId] = useState(null); 
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-    // Buscar os dados do perfil ao carregar a página
+   
     axios
       .get(`${BACK4APP_URL}?limit=1`, { headers: HEADERS })
       .then((response) => {
